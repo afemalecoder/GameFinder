@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GameFinderView: View {
     @EnvironmentObject var network: Network
-    @State private var name: String = ""
     
     var body: some View {
         NavigationStack{
@@ -17,9 +16,10 @@ struct GameFinderView: View {
                 LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
                 VStack {
                     ForEach(network.games) { game in
-                        HStack(alignment: .top) {
-                            Text("\(game.id)")
+                        VStack(alignment: .leading) {
                             Text(game.name)
+                            Text(game.summary ?? "")
+                            Text("\(game.genres)" as String)
                         }
                     }
                 }
@@ -29,9 +29,6 @@ struct GameFinderView: View {
         .onAppear{
             network.getGames()
         }
-    }
-    struct Genre: Codable {
-        let value: String
     }
 }
 

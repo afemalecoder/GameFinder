@@ -12,10 +12,10 @@ class Network: ObservableObject {
     @Published var games: [Games] = []
     
     func getGames() {
-        guard let url = URL(string: "https://api.igdb.com/v4/genres") else {fatalError("Missing URL")}
+        guard let url = URL(string: "https://api.igdb.com/v4/games/") else {fatalError("Missing URL")}
         
         var requestHeader = URLRequest(url: url)
-        requestHeader.httpBody = "fields checksum,created_at,name,slug,updated_at,url;".data(using: .utf8, allowLossyConversion: false)
+        requestHeader.httpBody = "fields name,platforms.name,genres.name,summary;".data(using: .utf8, allowLossyConversion: false)
         requestHeader.httpMethod = "POST"
         requestHeader.setValue("t6nopay939jxpnppaovtm5v8x02b9y", forHTTPHeaderField: "Client-ID")
         requestHeader.setValue("Bearer vrq1iq9enmbuuk217xyeelqmpy2dhl", forHTTPHeaderField: "Authorization")
