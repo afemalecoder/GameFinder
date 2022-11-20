@@ -20,12 +20,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct GameFinderApp: App {
+    var network = Network()
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authService = AuthService()
     
     var body: some Scene {
         WindowGroup {
-            GameFinderView()
+            GameFinderView().environmentObject(network)
             
         }
     }
