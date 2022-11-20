@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var genres = ["RPG", "Sandbox", "RTS", "FPS", "Simulaton", "MOBA", "ARPG", "MMORPG", "TPS", "Sport", "Puzzle", "Action", "Platform", " Adventure", "Horror", "Fighting", "Survival", "Indie"]
+    @State private var genres = ["Point-and-click", "Fighting", "Shooter", "Music", "Platform", "Puzzel", "Racing", "Real Time Strategy(RTS)", "Role-playing(RPG)", "Simulator", "Sport", "Strategy", "Turn-based strategy(TBS)", "Tactical", "Quiz/Trivia", "Hack and slash/Beat 'em up", "Pinball", "Adventure", "Arcade", " Visual Novel", "Indie", "Card & Board game", "MOBA"]
     @State private var currentProgress: CGFloat = 0.4
     @State private var isShowingBlue = false
     @State var selected = [String]()
@@ -101,7 +101,7 @@ struct ContentView: View {
         }
     label: {
             Text(text)
-                .padding(.all, 10)
+            .padding(.all, 5)
                 .font(.body)
                 .background(selected.contains(text) ? .blue : Colors().buttonColor)
                 .foregroundColor(Color.white)

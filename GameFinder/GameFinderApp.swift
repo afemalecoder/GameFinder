@@ -25,7 +25,7 @@ struct GameFinderApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashScreenView().environmentObject(authService)
+            GameFinderView()
             
         }
     }

@@ -12,12 +12,22 @@ struct ProfileView: View {
         NavigationStack{
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
-                VStack(alignment: .leading){
+                VStack(){
                     Text("My Profile")
                         .modifier(Style.Titles())
                     Image("gameFinder")
                         .resizable()
-                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                    Text("Matilda Cederberg")
+                        .modifier(Style.Titles())
+                    Text("email.com")
+                        .foregroundColor(.gray)
+                    HStack{
+                        //icon
+                        //name
+                        //arrow in form of a button
+                    }
                 }
             }
             .ignoresSafeArea()
