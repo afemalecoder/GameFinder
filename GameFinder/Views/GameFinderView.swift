@@ -14,17 +14,37 @@ struct GameFinderView: View {
         NavigationStack{
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
-                VStack {
+                
+                List {
                     ForEach(network.games) { game in
                         VStack(alignment: .leading) {
+                            
+                            AsyncImage(url: URL(string: "https:\(game.cover?.url ?? "N/A")")) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                            } placeholder: {
+                                Color.blue
+                            }
+                            .frame(width: 200, height: 200)
+                            
                             Text(game.name)
+                                .font(.headline.bold())
                             Text(game.summary ?? "")
-                            Text("\(game.genres)" as String)
+                            
+                            ForEach(game.genres ?? [Games.Genre]()) { genre in
+                                Text("\(genre.name)")
+                                    .background(.red)
+                            }
+                            ForEach(game.platforms ?? [Games.Platform]()) { platform in
+                                Text("\(platform.name)")
+                                    .background(.purple)
+                            }
                         }
                     }
                 }
+                .ignoresSafeArea()
             }
-            .ignoresSafeArea()
         }
         .onAppear{
             network.getGames()
