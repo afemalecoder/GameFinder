@@ -46,7 +46,7 @@ struct LoginView: View {
                             }
                             
                             Spacer()
-                            NavigationLink(destination: GameFinderView(), isActive: $loginSignup.loggedIn){EmptyView()}
+//                            NavigationLink(destination: GameFinderView(), isActive: $loginSignup.loggedIn){EmptyView()}
                             Button{
                                 loginSignup.loginUser(userEmail: userEmail, userPassword: userPassword)
                             }label: {

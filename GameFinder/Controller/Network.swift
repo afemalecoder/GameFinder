@@ -13,7 +13,7 @@ class Network: ObservableObject {
 
     
     func getGames() {
-        guard let url = URL(string: "https://api.igdb.com/v4/games/") else {fatalError("Missing URL")}
+        guard let url = URL(string: "https://api.igdb.com/v4/games/") else { fatalError("Missing URL") }
         
         var requestHeader = URLRequest(url: url)
         requestHeader.httpBody = "fields name,platforms.name,genres.name,summary,cover.*;".data(using: .utf8, allowLossyConversion: false)
@@ -22,11 +22,12 @@ class Network: ObservableObject {
         requestHeader.setValue("Bearer vrq1iq9enmbuuk217xyeelqmpy2dhl", forHTTPHeaderField: "Authorization")
         requestHeader.setValue("application/json", forHTTPHeaderField: "Accept")
         
-       let dataTask = URLSession.shared.dataTask(with: requestHeader) {(data, response, error) in
+       let dataTask = URLSession.shared.dataTask(with: requestHeader) { (data, response, error) in
            if let error = error {
                print("Request error:", error)
                return
            }
+           
            guard let response = response as? HTTPURLResponse else {return}
            
            if response.statusCode == 200 {

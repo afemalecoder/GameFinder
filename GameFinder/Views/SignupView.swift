@@ -57,7 +57,7 @@ struct SignupView: View {
                                     .foregroundColor(.red)
                             }
                             Spacer()
-                            NavigationLink(destination: GameFinderView(), isActive: $signup.registerd){EmptyView()}
+//                            NavigationLink(destination: GameFinderView(), isActive: $signup.registerd){EmptyView()}
                             Button{
                                 signup.registerUser(userEmail: userEmail, userPassword: userPassword)
                             }label: {

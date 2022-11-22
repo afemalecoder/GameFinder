@@ -14,7 +14,6 @@ struct GameFinderView: View {
         NavigationStack{
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
-                
                 List {
                     ForEach(network.games) { game in
                         VStack(alignment: .leading) {

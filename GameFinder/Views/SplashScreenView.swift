@@ -17,7 +17,7 @@ struct SplashScreenView: View {
     var body: some View {
         if isActive {
             if user != nil{
-                GameFinderView()
+//                GameFinderView()
             } else{
                 ContentView()
             }
