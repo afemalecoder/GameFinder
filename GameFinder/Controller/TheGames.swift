@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct Games: Codable, Identifiable {
+struct TheGames: Codable, Identifiable {
     
     struct Genre: Codable, Identifiable {
         let id: Int
         let name: String
     }
+    
     struct Platform: Codable, Identifiable {
         let id: Int
         let name: String

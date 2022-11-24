@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Network: ObservableObject {
-    @Published var games = [Games]()
+    @Published var games = [TheGames]()
 
     
     func getGames() {
@@ -34,7 +34,7 @@ class Network: ObservableObject {
                guard let data = data else {return}
                DispatchQueue.main.async {
                    do {
-                       let decodedGames = try JSONDecoder().decode([Games].self, from: data)
+                       let decodedGames = try JSONDecoder().decode([TheGames].self, from: data)
                        
                        self.games = decodedGames
                        

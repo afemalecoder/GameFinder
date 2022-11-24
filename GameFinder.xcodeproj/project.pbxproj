@@ -14,7 +14,7 @@
 		7209F67229111B9500DEB3C7 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7209F67129111B9500DEB3C7 /* SplashScreenView.swift */; };
 		7209F6772911662400DEB3C7 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7209F6762911662400DEB3C7 /* PlatformView.swift */; };
 		72AAAE8C292A796E00151A12 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAE8B292A796E00151A12 /* Network.swift */; };
-		72AAAE8E292A79C500151A12 /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAE8D292A79C500151A12 /* Games.swift */; };
+		72AAAE8E292A79C500151A12 /* TheGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAE8D292A79C500151A12 /* TheGames.swift */; };
 		72AAAEB4292C20E900151A12 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAEB3292C20E900151A12 /* GameCardView.swift */; };
 		72C08B3C2913B31C008983A0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C08B3B2913B31C008983A0 /* AuthService.swift */; };
 		72C08B3E2913B46D008983A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72C08B3D2913B46D008983A0 /* GoogleService-Info.plist */; };
@@ -41,7 +41,7 @@
 		7209F67129111B9500DEB3C7 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		7209F6762911662400DEB3C7 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
 		72AAAE8B292A796E00151A12 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		72AAAE8D292A79C500151A12 /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		72AAAE8D292A79C500151A12 /* TheGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGames.swift; sourceTree = "<group>"; };
 		72AAAEB3292C20E900151A12 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 		72C08B3B2913B31C008983A0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		72C08B3D2913B46D008983A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			children = (
 				72C08B3B2913B31C008983A0 /* AuthService.swift */,
 				72AAAE8B292A796E00151A12 /* Network.swift */,
-				72AAAE8D292A79C500151A12 /* Games.swift */,
+				72AAAE8D292A79C500151A12 /* TheGames.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 			files = (
 				72C08B532913E6AD008983A0 /* SignupView.swift in Sources */,
 				72C08B512913C55F008983A0 /* Colors.swift in Sources */,
-				72AAAE8E292A79C500151A12 /* Games.swift in Sources */,
+				72AAAE8E292A79C500151A12 /* TheGames.swift in Sources */,
 				72AAAE8C292A796E00151A12 /* Network.swift in Sources */,
 				72C08B552913EDC8008983A0 /* GameFinderView.swift in Sources */,
 				7209F6662911142E00DEB3C7 /* ContentView.swift in Sources */,
