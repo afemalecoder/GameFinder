@@ -16,13 +16,13 @@ class Network: ObservableObject {
         guard let url = URL(string: "https://api.igdb.com/v4/games/") else { fatalError("Missing URL") }
         
         var requestHeader = URLRequest(url: url)
-        requestHeader.httpBody = "fields name,platforms.name,genres.name,summary,cover.*;".data(using: .utf8, allowLossyConversion: false)
+        requestHeader.httpBody = "fields name,platforms.name,genres.name,screenshots.*,summary,cover.*;limit 30;where (rating>=80&cover!=null);".data(using: .utf8, allowLossyConversion: false)
         requestHeader.httpMethod = "POST"
         requestHeader.setValue("t6nopay939jxpnppaovtm5v8x02b9y", forHTTPHeaderField: "Client-ID")
         requestHeader.setValue("Bearer vrq1iq9enmbuuk217xyeelqmpy2dhl", forHTTPHeaderField: "Authorization")
         requestHeader.setValue("application/json", forHTTPHeaderField: "Accept")
         
-       let dataTask = URLSession.shared.dataTask(with: requestHeader) { (data, response, error) in
+        let dataTask = URLSession.shared.dataTask(with: requestHeader) { (data, response, error) in
            if let error = error {
                print("Request error:", error)
                return

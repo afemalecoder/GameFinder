@@ -9,6 +9,11 @@ import Foundation
 
 struct TheGames: Codable, Identifiable {
     
+    struct Screenshots: Codable, Identifiable {
+        let id: Int
+        let image_id: String
+    }
+    
     struct Genre: Codable, Identifiable {
         let id: Int
         let name: String
@@ -35,5 +40,6 @@ struct TheGames: Codable, Identifiable {
     var genres: [Genre]?
     var platforms: [Platform]?
     var cover: Cover?
+    var screenshots: [Screenshots]?
     
 }
