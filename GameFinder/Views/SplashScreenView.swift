@@ -19,7 +19,7 @@ struct SplashScreenView: View {
             if user != nil{
 //                GameFinderView()
             } else{
-                ContentView()
+//                ContentView()
             }
         } else {
             ZStack{

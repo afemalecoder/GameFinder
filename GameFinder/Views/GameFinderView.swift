@@ -9,15 +9,14 @@ import SwiftUI
 
 struct GameFinderView: View {
     @EnvironmentObject var network: Network
+    @State private var showGame = false
     
     var body: some View {
         NavigationStack{
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
-                VStack(){
+                
                     GameCardView()
-                }
-                .padding(.top, 150)
             }
             .ignoresSafeArea()
         }

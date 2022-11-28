@@ -10,14 +10,15 @@ import SwiftUI
 struct GameCardView: View {
     
     @EnvironmentObject var network: Network
+
     
     private func getCardWidth(_ geometry: GeometryProxy, id: Int) -> CGFloat {
         let offset: CGFloat = CGFloat(network.games.count) * 5
         return geometry.size.width - offset
     }
-    private func getCardOffset(_ geometry: GeometryProxy, id: Int) -> CGFloat {
-        return  CGFloat(network.games.count)
-    }
+    //    private func getCardOffset(_ geometry: GeometryProxy, id: Int) -> CGFloat {
+    //        return  CGFloat(network.games.count)
+    //    }
     //    private var maxID: Int {
     //        return network.games.map { $0.id }.max() ?? 0
     //    }
@@ -35,11 +36,14 @@ struct GameCardView: View {
                                 }
                             })
                             .frame(width: self.getCardWidth(geometry, id: game.id), height: geometry.size.height)
-                            .offset(x: 0, y: self.getCardOffset(geometry, id: game.id))
+                            //                            .offset(x: 0, y: self.getCardOffset(geometry, id: game.id))
+                            
                         }
+
+
                     }
                 }
-                .padding(.horizontal, 40)
+                .padding(.horizontal, 50)
             }
             .onAppear{
                 network.getGames()
@@ -51,10 +55,13 @@ struct GameCardView: View {
 struct theCard: View {
     
     @State private var translation: CGSize = .zero
-    
+    @State private var showGame = false
+    @State private var someStuff = ""
+
     var games: TheGames
     var onRemove: (_ game: TheGames) -> Void
     var thresholdPrecentage: CGFloat = 0.5
+    
     
     init(games: TheGames, onRemove: @escaping(_ games: TheGames) -> Void) {
         self.games = games
@@ -69,7 +76,7 @@ struct theCard: View {
             VStack(alignment: .leading) {
                 
                 AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_cover_big/\(games.cover?.image_id ?? "N/A").jpg")) { image in
-                        image
+                    image
                         .resizable()
                         .frame(width: 330, height: 320)
                 } placeholder: {
@@ -77,8 +84,7 @@ struct theCard: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 330, height: 330)
-                
-            }
+                }
                 cardText
             }
             .frame(width: 300, height: 500)
@@ -102,10 +108,17 @@ struct theCard: View {
                         }
                     }
             )
+            .onTapGesture {
+                showGame = true
+            }
+            .sheet(isPresented: $showGame) {
+                GameView(game: games)
+            }
         }
         
     }
     var cardText: some View {
+
         HStack {
             VStack(alignment: .leading) {
                 HStack(alignment: .bottom) {
@@ -115,37 +128,55 @@ struct theCard: View {
                         .foregroundColor(.white)
                 }
                 .padding(.bottom, 1)
-                VStack(alignment: .leading, spacing: 2.0) {
+                VStack(alignment: .leading, spacing: 1.0) {
+                    
                     HStack {
-                        ForEach(games.platforms ?? [TheGames.Platform]()) { platform in
-                            Text(platform.name)
-                                .lineLimit(1)
-                                .font(.subheadline)
-                                .foregroundColor(.white)
+                        ForEach((games.platforms?.prefix(4))!) { platform in
+                            if platform.name == "PC (Microsoft Windows)" {
+                                Text("PC")
+                                    .scaledToFit()
+                                    .lineLimit(1)
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
+                                
+                            } else {
+                                Text(platform.name)
+                                    .scaledToFit()
+                                    .lineLimit(1)
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
+                               
+                            }
+                            
                         }
+                       
                     }
+                    
                     HStack {
-                        ForEach(games.genres ?? [TheGames.Genre]()) { genre in
+                        ForEach((games.genres?.prefix(2))!) { genre in
                             Text(genre.name)
-                                .lineLimit(1)
-                                .font(.subheadline.bold())
-                                .foregroundColor(.white)
-                                .padding(3)
-                                .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    .lineLimit(1)
+                                    .font(.subheadline.bold())
+                                    .foregroundColor(.white)
+                                    .padding(3)
+                                    .background(.blue)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
                         }
                     }
                     Text(games.summary ?? "N/A")
-                        .font(.headline)
+                        .font(.caption)
                         .foregroundColor(.white)
                         .padding(.top, 5)
                     Spacer()
                 }
             }
             .padding(.leading, 20)
+            
         }
     }
+    
 }
+
 
 struct GameCardView_Previews: PreviewProvider {
     static var previews: some View {
