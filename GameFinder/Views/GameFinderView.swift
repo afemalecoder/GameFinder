@@ -17,6 +17,7 @@ struct GameFinderView: View {
                 LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
                 
                     GameCardView()
+                    .padding(.top, 150)
             }
             .ignoresSafeArea()
         }

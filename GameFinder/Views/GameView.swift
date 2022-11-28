@@ -8,61 +8,78 @@
 import SwiftUI
 
 struct GameView: View {
-    let game: TheGames
+    let game: TheGame
     
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
-            VStack {
-                AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_cover_big/\(game.cover?.image_id ?? "N/A").jpg")) { image in
-                    image
-                        .resizable()
-                        .frame(width: 330, height: 320)
-                } placeholder: {
-                    Image("gameFinder")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 330, height: 330)
-                }
-                Text(game.name)
-                    .lineLimit(2)
-                    .font(.title2.bold())
-                    .foregroundColor(.white)
-               
-                HStack {
-                    ForEach((game.genres?.prefix(2))!) { genre in
-                        Text(genre.name)
-                                .lineLimit(1)
+            ScrollView {
+                VStack(alignment: .leading) {
+                    VStack {
+                        HStack {
+                            CoverView(currentGame: game)
+                                .frame(width: 100, height: 100)
+                            
+                            VStack(alignment: .leading) {
+                                Text(game.name)
+                                    .font(.title2.bold())
+                                    .foregroundColor(.white)
+                                
+                                ForEach((game.release_dates?.prefix(1))!) { date in
+                                    Text("Release date: \(date.y), \(date.m)")
+                                }
+                                Text(game.involved_companies![0].company.name)
+                            }
+                            Spacer()
+                            Text("\((game.aggregated_rating ?? 0.0),specifier: "%.2f")")
                                 .font(.subheadline.bold())
+                                .padding(15)
                                 .foregroundColor(.white)
-                                .padding(3)
                                 .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                        
-                    }
-                }
-                HStack {
-                    ForEach((game.platforms?.prefix(4))!) { platform in
-                        if platform.name == "PC (Microsoft Windows)" {
-                            Text("PC")
-                                .scaledToFit()
-                                .lineLimit(1)
-                                .font(.subheadline)
-                                .foregroundColor(.white)
-                        } else {
-                            Text(platform.name)
-                                .scaledToFit()
-                                .lineLimit(1)
-                                .font(.subheadline)
-                                .foregroundColor(.white)
+                                .clipShape(Circle())
                         }
                     }
+                    VStack(alignment: .leading) {
+                        Text("Genres: ")
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                        
+                        GenreView(currentgame: game)
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Platform: ")
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                        ScrollView(.horizontal){
+                            PlatformView(currentGame: game)
+                        }
+                    }
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(game.screenshots ?? [TheGame.Screenshots]()) { screenshot in
+                                AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_thumb/\(screenshot.image_id).jpg")) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 150, height: 150)
+                                } placeholder: {
+                                    Image("gameFinder")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 100, height: 100)
+                                }
+                            }
+                        }
+                    }
+                    Section {
+                        Text(game.summary ?? "N/A")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                    } header: {
+                        Text("Story:")
+                    }
                 }
-                Text(game.summary ?? "N/A")
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .padding(.top, 5)
             }
+            .padding(20)
         }
         .ignoresSafeArea()
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TheGames: Codable, Identifiable {
+struct TheGame: Codable, Identifiable {
     
     struct Screenshots: Codable, Identifiable {
         let id: Int
@@ -26,20 +26,32 @@ struct TheGames: Codable, Identifiable {
     
     struct Cover: Codable, Identifiable {
         let id: Int
-        let game: Int
-        let height: Int
         let image_id: String
-        let url: String
-        let width: Int
-//        let checknum: String
     }
     
+    struct Date: Codable, Identifiable {
+        let id: Int
+        let m: Int
+        let y: Int
+    }
+    struct Companies: Codable, Identifiable{
+        let id: Int
+        let company : Company
+    }
+
+    struct Company: Codable, Identifiable{
+        let id: Int
+        let name: String
+    }
+
     var id: Int
+    var aggregated_rating: Double?
     var name: String
     var summary: String?
     var genres: [Genre]?
     var platforms: [Platform]?
     var cover: Cover?
     var screenshots: [Screenshots]?
-    
+    var release_dates: [Date]?
+    var involved_companies: [Companies]?
 }
