@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GameView: View {
     let game: TheGame
+    let dateFormatter = Date()
+    @Environment(\.openURL) private var openURL
+    @State var games = [Steam]()
     
     var body: some View {
         ZStack {
@@ -25,9 +28,8 @@ struct GameView: View {
                                     .font(.title2.bold())
                                     .foregroundColor(.white)
                                 
-                                ForEach((game.release_dates?.prefix(1))!) { date in
-                                    Text("Release date: \(date.y), \(date.m)")
-                                }
+                                Text("Release date: \(NSDate(timeIntervalSince1970: Double(game.first_release_date)) as Date.FormatStyle.FormatInput, format: Date.FormatStyle().year().month().day())")
+                                
                                 Text(game.involved_companies![0].company.name)
                             }
                             Spacer()
@@ -40,11 +42,16 @@ struct GameView: View {
                         }
                     }
                     VStack(alignment: .leading) {
+                        ForEach(game.player_perspectives ?? [TheGame.Perspective]()) { perspective in
+                            Text(perspective.name)
+                        }
                         Text("Genres: ")
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
                         
-                        GenreView(currentgame: game)
+                        ScrollView(.horizontal){
+                            GenreView(currentgame: game)
+                        }
                     }
                     VStack(alignment: .leading) {
                         Text("Platform: ")
@@ -61,15 +68,33 @@ struct GameView: View {
                                     image
                                         .resizable()
                                         .frame(width: 150, height: 150)
+                                        .cornerRadius(12)
                                 } placeholder: {
                                     Image("gameFinder")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 100, height: 100)
+                                        .cornerRadius(12)
                                 }
                             }
                         }
                     }
+                    ScrollView(.horizontal){
+                        HStack {
+                            ForEach(game.videos ?? [TheGame.Video]()) { video in
+                                if video.name == "Trailer"{
+                                    VideoView(videoID: video.video_id)
+                                        .frame(width: 200, height: 150)
+                                        .cornerRadius(12)
+                                } else {
+                                    VideoView(videoID: video.video_id)
+                                        .frame(width: 200, height: 150)
+                                        .cornerRadius(12)
+                                }
+                            }
+                        }
+                    }
+                    
                     Section {
                         Text(game.summary ?? "N/A")
                             .font(.title3)
@@ -77,7 +102,26 @@ struct GameView: View {
                     } header: {
                         Text("Story:")
                     }
+                    ForEach(games.prefix(1)) { gameS in
+                        Text("Title: \(gameS.title)")
+                        Text("Normal price: \(gameS.normalPrice)")
+                        Text("Sale prices: \(gameS.salePrice)")
+                        Text("Steam rating percent: \(gameS.steamRatingPercent)")
+                        Text("Steam rating text: \(gameS.steamRatingText ?? "N/A")")
+                        Text("Steam rating count: \(gameS.steamRatingCount)")
+                    }
+//                    ForEach(game.multiplayer_modes ?? [TheGame.Multiplayer]()) { game in
+//                        Text("\(game.campaigncoop ? "YES" : "NO")")
+//       
+//                    }
+
                 }
+            }
+            .onAppear() {
+                Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(game.slug ?? "")") { games in
+                    
+                self.games = games
+            }
             }
             .padding(20)
         }

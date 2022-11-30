@@ -54,7 +54,8 @@ struct TheCard: View {
     @State private var translation: CGSize = .zero
     @State private var showGame = false
     @State private var someStuff = ""
-
+    
+    
     var games: TheGame
     var onRemove: (_ game: TheGame) -> Void
     var thresholdPrecentage: CGFloat = 0.5

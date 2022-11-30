@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct TheGame: Codable, Identifiable {
     
     struct Screenshots: Codable, Identifiable {
@@ -22,6 +23,7 @@ struct TheGame: Codable, Identifiable {
     struct Platform: Codable, Identifiable {
         let id: Int
         let name: String
+        //        let image_id: String
     }
     
     struct Cover: Codable, Identifiable {
@@ -29,22 +31,45 @@ struct TheGame: Codable, Identifiable {
         let image_id: String
     }
     
-    struct Date: Codable, Identifiable {
-        let id: Int
-        let m: Int
-        let y: Int
-    }
     struct Companies: Codable, Identifiable{
         let id: Int
         let company : Company
     }
-
+    
     struct Company: Codable, Identifiable{
         let id: Int
         let name: String
     }
+    struct Perspective: Codable, Identifiable{
+        let id: Int
+        let name: String
+    }
+    struct Video: Codable, Identifiable {
+        let id: Int
+        let name: String?
+        let video_id: String
+    }
+    struct Website: Codable, Identifiable {
+        let id: Int
+        let category: Int
+        let url: String
+    }
+//    struct Multiplayer: Codable, Identifiable {
+//        var id: Int
+//        var campaigncoop: Bool
+//        var lancoop: Bool
+//        var offlinecoop: Bool
+//        var offlinecoopmax: Int?
+//        var offlinemax: Int?
+//        var onlinecoop: Bool
+//        var onlinecoopmax: Int?
+//        var onlinemax: Int?
+//        var splitscreen: Bool
+//        
+//    }
 
     var id: Int
+    var slug: String?
     var aggregated_rating: Double?
     var name: String
     var summary: String?
@@ -52,6 +77,10 @@ struct TheGame: Codable, Identifiable {
     var platforms: [Platform]?
     var cover: Cover?
     var screenshots: [Screenshots]?
-    var release_dates: [Date]?
+    var first_release_date: Int
     var involved_companies: [Companies]?
+    var player_perspectives: [Perspective]?
+    var videos: [Video]?
+    var websites: [Website]?
+//    var multiplayer_modes: [Multiplayer]?
 }
