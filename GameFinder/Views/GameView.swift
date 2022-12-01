@@ -10,7 +10,6 @@ import SwiftUI
 struct GameView: View {
     let game: TheGame
     let dateFormatter = Date()
-    @Environment(\.openURL) private var openURL
     @State var games = [Steam]()
     
     var body: some View {
@@ -45,6 +44,12 @@ struct GameView: View {
                         ForEach(game.player_perspectives ?? [TheGame.Perspective]()) { perspective in
                             Text(perspective.name)
                         }
+                        GameModesView(currentgame: game)
+                        
+                        ForEach(game.themes ?? [TheGame.Themes]()) { game in
+                            Text("\(game.name)")
+                        }
+                        
                         Text("Genres: ")
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
@@ -102,18 +107,28 @@ struct GameView: View {
                     } header: {
                         Text("Story:")
                     }
-                    ForEach(games.prefix(1)) { gameS in
-                        Text("Title: \(gameS.title)")
-                        Text("Normal price: \(gameS.normalPrice)")
-                        Text("Sale prices: \(gameS.salePrice)")
-                        Text("Steam rating percent: \(gameS.steamRatingPercent)")
-                        Text("Steam rating text: \(gameS.steamRatingText ?? "N/A")")
-                        Text("Steam rating count: \(gameS.steamRatingCount)")
+                    ForEach(games.prefix(1)) { game in
+                        Text("Title: \(game.title)")
+                        Text("Normal price: \(game.normalPrice)")
+                        Text("Sale prices: \(game.salePrice)")
+                        Text("Steam rating percent: \(game.steamRatingPercent)")
+                        Text("Steam rating text: \(game.steamRatingText ?? "N/A")")
+                        Text("Steam rating count: \(game.steamRatingCount)")
                     }
-//                    ForEach(game.multiplayer_modes ?? [TheGame.Multiplayer]()) { game in
-//                        Text("\(game.campaigncoop ? "YES" : "NO")")
-//       
-//                    }
+                    ForEach(game.multiplayer_modes ?? [TheGame.Multiplayer]()) { game in
+                        Text("Got campaign coop:\(game.campaigncoop ? "YES" : "NO")")
+                        Text("Got lan coop:\(game.lancoop ? "YES" : "NO")")
+                        Text("Got offline coop:\(game.offlinecoop ? "YES" : "NO")")
+                        if game.offlinecoop {
+                            Text("Amount players: \(game.offlinecoopmax ?? 0)")
+                        }
+                        Text("Got online coop:\(game.onlinecoop ? "YES" : "NO")")
+                        if game.onlinecoop {
+                            Text("Amount players: \(game.onlinecoopmax ?? 0)")
+                        }
+                        Text("Got splitscreen:\(game.splitscreen ? "YES" : "NO")")
+
+                    }
 
                 }
             }

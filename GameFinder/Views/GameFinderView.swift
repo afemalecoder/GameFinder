@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GameFinderView: View {
-    @EnvironmentObject var network: Network
     @State private var showGame = false
     
     var body: some View {
@@ -20,9 +19,6 @@ struct GameFinderView: View {
                     .padding(.top, 150)
             }
             .ignoresSafeArea()
-        }
-        .onAppear{
-            network.getGames()
         }
     }
 }

@@ -9,27 +9,24 @@ import SwiftUI
 import Firebase
 
 struct SplashScreenView: View {
+    @EnvironmentObject var network: Network
+
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
-    var user = Auth.auth().currentUser
     
     var body: some View {
+        
         if isActive {
-            if user != nil{
-//                GameFinderView()
-            } else{
-//                ContentView()
-            }
+            GameFinderView()
         } else {
             ZStack{
-                Color(red: 18 / 255, green: 21 / 255, blue: 64 / 255)
+                Colors().backgroundColor
                 VStack {
-                    Image("gameFinder")
+                    Image("gamefinder")
                         .resizable()
                         .scaledToFit()
                 }
-               
                 .scaleEffect(size)
                 .opacity(opacity)
                 .onAppear{
@@ -41,9 +38,10 @@ struct SplashScreenView: View {
             }
             .ignoresSafeArea()
             .onAppear{
+                network.getGames()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                     withAnimation{
-                        self.isActive = true
+                        self.isActive = true 
                     }
                 }
             }

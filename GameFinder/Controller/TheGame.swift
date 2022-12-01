@@ -54,19 +54,29 @@ struct TheGame: Codable, Identifiable {
         let category: Int
         let url: String
     }
-//    struct Multiplayer: Codable, Identifiable {
-//        var id: Int
-//        var campaigncoop: Bool
-//        var lancoop: Bool
-//        var offlinecoop: Bool
-//        var offlinecoopmax: Int?
-//        var offlinemax: Int?
-//        var onlinecoop: Bool
-//        var onlinecoopmax: Int?
-//        var onlinemax: Int?
-//        var splitscreen: Bool
-//        
-//    }
+    struct Multiplayer: Codable, Identifiable {
+        var id: Int
+        var campaigncoop: Bool
+        var lancoop: Bool
+        var offlinecoop: Bool
+        var offlinecoopmax: Int?
+        var offlinemax: Int?
+        var onlinecoop: Bool
+        var onlinecoopmax: Int?
+        var onlinemax: Int?
+        var splitscreen: Bool
+        
+    }
+    
+    struct Modes: Codable, Identifiable {
+        var id: Int
+        var name: String
+    }
+    
+    struct Themes: Codable, Identifiable {
+        var id: Int
+        var name: String 
+    }
 
     var id: Int
     var slug: String?
@@ -82,5 +92,7 @@ struct TheGame: Codable, Identifiable {
     var player_perspectives: [Perspective]?
     var videos: [Video]?
     var websites: [Website]?
-//    var multiplayer_modes: [Multiplayer]?
+    var multiplayer_modes: [Multiplayer]?
+    var game_modes: [Modes]
+    var themes: [Themes]?
 }

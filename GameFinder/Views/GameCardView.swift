@@ -119,6 +119,9 @@ struct TheCard: View {
                     PlatformView(currentGame: games, amount: 4)
                     
                     GenreView(currentgame: games, genreAmount: 2)
+                    
+                    GameModesView(currentgame: games)
+                    
                     Text(games.summary ?? "N/A")
                         .font(.caption)
                         .foregroundColor(.white)

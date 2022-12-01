@@ -27,7 +27,8 @@ struct GameFinderApp: App {
     
     var body: some Scene {
         WindowGroup {
-            GameFinderView().environmentObject(network)
+            SplashScreenView().environmentObject(network)
+//            GameFinderView().environmentObject(network)
 //            GameCardView().environmentObject(network)
             
         }

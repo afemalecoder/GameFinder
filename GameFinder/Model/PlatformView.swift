@@ -16,18 +16,8 @@ struct PlatformView: View {
     var body: some View {
         HStack {
             ForEach((currentGame.platforms?.prefix(amount))!) { platform in
-//                AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_thumb/.jpg")) { image in
-//                    image
-//                        .resizable()
-//                        .frame(width: 50, height: 50)
-//                } placeholder: {
-//                    Image("gameFinder")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 00, height: 00)
-//                }
                 if platform.name == "PC (Microsoft Windows)" {
-                    Label("PC ", systemImage: "desktopcomputer")
+                    Text("PC ")
                         .scaledToFit()
                         .lineLimit(1)
                         .font(.subheadline)

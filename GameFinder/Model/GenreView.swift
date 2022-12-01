@@ -10,7 +10,7 @@ import SwiftUI
 struct GenreView: View {
     
     @State var currentgame : TheGame
-    @State var genreAmount = 9999
+    @State var genreAmount = 999
     
     var body: some View {
         HStack {
