@@ -14,7 +14,7 @@ struct GenreView: View {
     
     var body: some View {
         HStack {
-            ForEach((currentgame.genres?.prefix(genreAmount))!) { genre in
+            ForEach((currentgame.genres?.prefix(genreAmount)) ?? [TheGame.Genre]().prefix(genreAmount)) { genre in
                 Text(genre.name)
                         .lineLimit(1)
                         .font(.subheadline.bold())

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Favourites" representedClassName="Favourites" syncable="YES" codeGenerationType="class">
+        <attribute name="aggregatedRating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cover" optional="YES" attributeType="String"/>
+        <attribute name="firstReleaseDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="gameModes" optional="YES" attributeType="String"/>
+        <attribute name="genres" optional="YES" attributeType="String" valueTransformerName=""/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="involvedCompanies" optional="YES" attributeType="String"/>
+        <attribute name="multiplayerModes" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="platforms" optional="YES" attributeType="String"/>
+        <attribute name="playerPerspective" optional="YES" attributeType="String"/>
+        <attribute name="screenshots" optional="YES" attributeType="String"/>
+        <attribute name="slug" optional="YES" attributeType="String"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
+        <attribute name="theme" optional="YES" attributeType="String"/>
+        <attribute name="videos" optional="YES" attributeType="String"/>
+    </entity>
+</model>

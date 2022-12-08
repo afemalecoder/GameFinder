@@ -16,11 +16,13 @@ struct CoverView: View {
                 .resizable()
                 .frame(width: coverSize, height: coverSize)
         } placeholder: {
-            Image("gameFinder")
+            Image("gamefinder")
                 .resizable()
                 .scaledToFit()
                 .frame(width: coverSize, height: coverSize)
-        }    }
+        }
+        
+    }
 }
 
 //struct CoverView_Previews: PreviewProvider {

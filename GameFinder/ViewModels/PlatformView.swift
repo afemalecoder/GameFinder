@@ -15,7 +15,7 @@ struct PlatformView: View {
   
     var body: some View {
         HStack {
-            ForEach((currentGame.platforms?.prefix(amount))!) { platform in
+            ForEach((currentGame.platforms?.prefix(amount) ?? [TheGame.Platform]().prefix(amount))) { platform in
                 if platform.name == "PC (Microsoft Windows)" {
                     Text("PC ")
                         .scaledToFit()

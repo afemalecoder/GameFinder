@@ -13,8 +13,10 @@ struct GameView: View {
     @State var games = [Steam]()
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
+            
             LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
+            
             ScrollView {
                 VStack(alignment: .leading) {
                     VStack {
@@ -23,13 +25,13 @@ struct GameView: View {
                                 .frame(width: 100, height: 100)
                             
                             VStack(alignment: .leading) {
-                                Text(game.name)
+                                Text(game.name ?? "N/A")
                                     .font(.title2.bold())
                                     .foregroundColor(.white)
                                 
-                                Text("Release date: \(NSDate(timeIntervalSince1970: Double(game.first_release_date)) as Date.FormatStyle.FormatInput, format: Date.FormatStyle().year().month().day())")
+                                Text("Release date: \(NSDate(timeIntervalSince1970: Double(game.first_release_date ?? 0)) as Date.FormatStyle.FormatInput, format: Date.FormatStyle().year().month().day())")
                                 
-                                Text(game.involved_companies![0].company.name)
+                                Text(game.involved_companies?[0].company.name ?? "N/A" )
                             }
                             Spacer()
                             Text("\((game.aggregated_rating ?? 0.0),specifier: "%.2f")")
@@ -127,18 +129,18 @@ struct GameView: View {
                             Text("Amount players: \(game.onlinecoopmax ?? 0)")
                         }
                         Text("Got splitscreen:\(game.splitscreen ? "YES" : "NO")")
-
                     }
-
                 }
+                .padding(10)
+                .padding(.bottom, 100)
             }
+            
+            
             .onAppear() {
                 Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(game.slug ?? "")") { games in
-                    
-                self.games = games
+                    self.games = games
+                }
             }
-            }
-            .padding(20)
         }
         .ignoresSafeArea()
     }

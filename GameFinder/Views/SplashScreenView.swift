@@ -11,6 +11,7 @@ import Firebase
 struct SplashScreenView: View {
     @EnvironmentObject var network: Network
 
+    
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
@@ -38,7 +39,7 @@ struct SplashScreenView: View {
             }
             .ignoresSafeArea()
             .onAppear{
-                network.getGames()
+                network.getGames() {}
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                     withAnimation{
                         self.isActive = true 
@@ -49,8 +50,8 @@ struct SplashScreenView: View {
     }
 }
 
-struct SplashScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashScreenView()
-    }
-}
+//struct SplashScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SplashScreenView()
+//    }
+//}
