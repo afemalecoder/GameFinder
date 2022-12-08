@@ -24,7 +24,7 @@ func FavouriteGame(games: TheGame, newFav: Favourites) {
     newFav.slug = games.slug
     newFav.summary = games.summary
     for theme in games.themes ?? [TheGame.Themes]() {newFav.theme = theme.name }
-    for video in games.videos ?? [TheGame.Video]() {newFav.videos = video.video_id }
+//    for video in games.videos ?? [TheGame.Video]() {newFav.videos = video.video_id }
     
    
 }
