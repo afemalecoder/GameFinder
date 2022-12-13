@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+
 
 struct SplashScreenView: View {
     @EnvironmentObject var network: Network

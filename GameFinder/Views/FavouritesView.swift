@@ -8,6 +8,9 @@ import CoreData
 import SwiftUI
 
 struct FavouritesView: View {
+    @State var game : FavoriteGameStruct?
+    var networkFav = NetworkFavorite()
+    
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var favourites: FetchedResults<Favourites>
     
@@ -19,7 +22,7 @@ struct FavouritesView: View {
                     List {
                         ForEach(favourites, id: \.self) { favourite in
                             NavigationLink {
-                                FavouritesDetailView(favorite: favourite)
+                                FavouritesDetailView(game: $game, favorite: favourite).environmentObject(networkFav)
                             } label: {
                                 HStack {
                                     AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_cover_big/\(favourite.cover ?? "N/A").jpg")) { image in
@@ -37,10 +40,12 @@ struct FavouritesView: View {
                                 }
                             }
                         }
-                      
-                        .onDelete(perform: deleteGame)
                         
+                        .onDelete(perform: deleteGame)
+                        .listRowBackground(Colors().backgroundColor)
+
                     }
+                    
                     .padding(.top, 70)
                     .navigationBarTitle("Favorites")
                     .scrollContentBackground(.hidden)

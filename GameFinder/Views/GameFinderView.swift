@@ -18,7 +18,7 @@ struct GameFinderView: View {
                 VStack {
                     
                     GameCardView(currentgame: $game)
-                        .padding(.top, 100)
+                        .padding(.top, 110)
                     
                     if game != nil {
                         LikeDislikeButtonView(games: game!, onRemove: { removedGame in
@@ -28,24 +28,24 @@ struct GameFinderView: View {
                                 network.getGames() {}
                             }
                         })
-                        .padding(.bottom, 50)
+                        .padding(.bottom, 45)
                     }
                 }
-                .toolbar() {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: FavouritesView()){
-                            Image(systemName: "heart")
-                        }
+                
+            }
+            .toolbar() {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: FavouritesView()){
+                        Image(systemName: "heart.fill")
+                        .font(.system(size: 30))
+                        .foregroundColor(Color(red: 251 / 255, green: 119 / 255, blue: 133 / 255))
+                        .padding([.trailing, .bottom], 15)
+                        .padding(.top, 25)
                     }
                 }
             }
             .ignoresSafeArea()
         }
+        
     }
 }
-
-//struct GameFinderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GameFinderView(games: TheGame()).environmentObject(Network())
-//    }
-//}

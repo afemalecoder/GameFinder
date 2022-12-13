@@ -24,13 +24,11 @@ class Api: ObservableObject {
     func loadData(url: String, completion: @escaping ([Steam]) -> ()) {
         guard let url = URL(string: url) else {
             print("The url was invalid")
-            print(url)
             return
         }
         print(url)
         URLSession.shared.dataTask(with: url) { data, response, error in
             let  steams = try! JSONDecoder().decode([Steam].self, from: data!)
-            print(steams)
             DispatchQueue.main.async {
                 completion(steams)
             }

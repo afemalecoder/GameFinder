@@ -10,6 +10,18 @@ import SwiftUI
 
 class Style {
     
+    struct DividerView: View {
+        var body: some View {
+            Rectangle()
+                .frame(width: 1)
+                .foregroundColor(.white)
+                .opacity(0.5)
+                .shadow(radius: 2)
+                .padding(.horizontal)
+               
+        }
+    }
+    
     struct ProgressBarStyle: View {
         var progress: Double
         var body: some View {

@@ -9,16 +9,23 @@ import SwiftUI
 
 struct GameModesView: View {
     @State var currentgame : TheGame
-
+    
     var body: some View {
-        ForEach(currentgame.game_modes ?? [TheGame.Modes]()) { game in
-            Text("\(game.name)")
+        
+        VStack(alignment: .leading) {
+            Text("Modes: ")
+                .font(.system(size: 12))
+                .foregroundColor(.gray)
+            if currentgame.game_modes != nil {
+                HStack {
+                    ForEach(currentgame.game_modes ?? [TheGame.Modes]()) { game in
+                        Text(game.name)
+                       
+                    }
+                }
+            } else {
+                Text("N/A")
+            }
         }
     }
 }
-
-//struct GameModesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GameModesView()
-//    }
-//}

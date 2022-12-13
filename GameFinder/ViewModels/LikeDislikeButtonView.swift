@@ -18,34 +18,33 @@ struct LikeDislikeButtonView: View {
        
             HStack {
                     Button(action: {
-                        FavouriteGame(games: games, newFav: Favourites(context: moc))
-                        
+                       
                         self.onRemove(self.games)
                         dismiss()
-                        try? moc.save()
-                        
                     }) {
-                        Label("Like ",systemImage: "heart")
-                            .fontWeight(.bold)
-                            .font(.title)
+                       
+                        Image(systemName: "xmark")
+                            .font(.system(size: 50))
                             .padding(10)
-                            .background(.blue.opacity(0.4))
-                            .clipShape(RoundedRectangle(cornerRadius: 40))
-                            .foregroundColor(.blue)
+                            .background(Color(red: 251 / 255, green: 119 / 255, blue: 133 / 255))
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .foregroundColor(.white)
                             .padding(10)
                     }
                 
                 Button {
+                    FavouriteGame(games: games, newFav: Favourites(context: moc))
+                    
                     self.onRemove(self.games)
                     dismiss()
+                    try? moc.save()
                 } label: {
-                    Label("Dislike", systemImage: "hand.thumbsdown")
-                        .fontWeight(.bold)
-                        .font(.title)
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 45))
                         .padding(10)
-                        .background(.blue.opacity(0.4))
-                        .clipShape(RoundedRectangle(cornerRadius: 40))
-                        .foregroundColor(.blue)
+                        .background(Color(red: 106 / 255, green: 103 / 255, blue: 244 / 255))
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .foregroundColor(.white)
                         .padding(10)
                 }
             }

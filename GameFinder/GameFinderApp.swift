@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+
 
 //
 //class AppDelegate: NSObject, UIApplicationDelegate {
@@ -22,9 +22,10 @@ import Firebase
 struct GameFinderApp: App {
     
     init() {
-        FirebaseApp.configure()
+        
     }
     var network = Network()
+    
     
     @StateObject private var dataController = DataController()
 

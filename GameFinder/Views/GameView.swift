@@ -9,145 +9,145 @@ import SwiftUI
 
 struct GameView: View {
     let game: TheGame
-    let dateFormatter = Date()
     @State var games = [Steam]()
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
-            LinearGradient(gradient: Gradient(colors: [Colors().backgroundColor,Colors().secondaryBackgroundColor ]), startPoint: .top, endPoint: .bottom)
-            
-            ScrollView {
-                VStack(alignment: .leading) {
-                    VStack {
-                        HStack {
-                            CoverView(currentGame: game)
-                                .frame(width: 100, height: 100)
-                            
-                            VStack(alignment: .leading) {
-                                Text(game.name ?? "N/A")
-                                    .font(.title2.bold())
-                                    .foregroundColor(.white)
+        NavigationStack {
+            ZStack(alignment: .bottom) {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        VStack {
+                            HStack {
+                                CoverView(currentGame: game)
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
                                 
-                                Text("Release date: \(NSDate(timeIntervalSince1970: Double(game.first_release_date ?? 0)) as Date.FormatStyle.FormatInput, format: Date.FormatStyle().year().month().day())")
+                                VStack(alignment: .leading) {
+                                    Text(game.name ?? "N/A")
+                                        .font(.title2.bold())
+                                        .foregroundColor(.white)
+                                    
+                                    ReleaseDateView(currentGame: game)
+                                }
                                 
-                                Text(game.involved_companies?[0].company.name ?? "N/A" )
+                                Spacer()
+                                RatingView(currentGame: game)
                             }
-                            Spacer()
-                            Text("\((game.aggregated_rating ?? 0.0),specifier: "%.2f")")
-                                .font(.subheadline.bold())
-                                .padding(15)
-                                .foregroundColor(.white)
-                                .background(.blue)
-                                .clipShape(Circle())
-                        }
-                    }
-                    VStack(alignment: .leading) {
-                        ForEach(game.player_perspectives ?? [TheGame.Perspective]()) { perspective in
-                            Text(perspective.name)
-                        }
-                        GameModesView(currentgame: game)
-                        
-                        ForEach(game.themes ?? [TheGame.Themes]()) { game in
-                            Text("\(game.name)")
                         }
                         
-                        Text("Genres: ")
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
-                        
-                        ScrollView(.horizontal){
-                            GenreView(currentgame: game)
+                        VStack(alignment: .leading) {
+                            
+                            PlayerPerspectiveView(currentGame: game)
+                            
+                            GameModesView(currentgame: game)
+                            
+                            ThemeView(currentGame: game)
+                            
+                            Text("Genres:")
+                                .font(.system(size: 15))
+                                .foregroundColor(.gray)
+                            ScrollView(.horizontal){
+                                GenreView(currentgame: game)
+                            }
                         }
-                    }
-                    VStack(alignment: .leading) {
+                        
                         Text("Platform: ")
-                            .font(.system(size: 12))
+                            .font(.system(size: 15))
                             .foregroundColor(.gray)
                         ScrollView(.horizontal){
                             PlatformView(currentGame: game)
                         }
-                    }
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(game.screenshots ?? [TheGame.Screenshots]()) { screenshot in
-                                AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_thumb/\(screenshot.image_id).jpg")) { image in
-                                    image
-                                        .resizable()
-                                        .frame(width: 150, height: 150)
-                                        .cornerRadius(12)
-                                } placeholder: {
-                                    Image("gameFinder")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 100)
-                                        .cornerRadius(12)
+                        
+                        
+                        ScrollView(.horizontal) {
+                            ScreenshotsView(currentGame: game)
+                        }
+                        .padding([.top, .bottom], 5)
+                        
+                        ForEach(games.prefix(1)) { game in
+                            HStack(spacing: 15) {
+                                VStack {
+                                    Text("Normal price:")
+                                        .font(.title3.bold())
+                                    Text("\(game.normalPrice)$")
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal, 5)
+                                .padding(.vertical, 20)
+                                .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                
+                                VStack {
+                                    Text("Sale prices: ")
+                                        .font(.title3.bold())
+                                    if game.salePrice == game.normalPrice {
+                                        Text("N/A")
+                                    } else {
+                                        Text("\(game.salePrice)$")
+                                    }
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal, 5)
+                                .padding(.vertical, 20)
+                                .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                            }
+                            
+                            HStack(spacing: 2.0) {
+                                VStack(alignment: .center){
+                                    Text(" Rating percent: ")
+                                        .font(.subheadline.bold())
+                                    Text("\(game.steamRatingPercent)%")
+                                }
+                                Style.DividerView()
+                                VStack(alignment: .center){
+                                    Text(" Rating: ")
+                                        .font(.subheadline.bold())
+                                    Text("\(game.steamRatingText ?? "N/A")")
+                                }
+                                Style.DividerView()
+                                VStack(alignment: .center) {
+                                    Text(" Rating count: ")
+                                        .font(.subheadline.bold())
+                                    Text("\(game.steamRatingCount)")
                                 }
                             }
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 20)
+                            .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
                         }
-                    }
-                    ScrollView(.horizontal){
-                        HStack {
-                            ForEach(game.videos ?? [TheGame.Video]()) { video in
-                                if video.name == "Trailer"{
-                                    VideoView(videoID: video.video_id)
-                                        .frame(width: 200, height: 150)
-                                        .cornerRadius(12)
-                                } else {
-                                    VideoView(videoID: video.video_id)
-                                        .frame(width: 200, height: 150)
-                                        .cornerRadius(12)
-                                }
-                            }
+                        .padding(.bottom, 15)
+                        
+                        Section {
+                            Text(game.summary ?? "N/A")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                        } header: {
+                            Text("Story:")
+                                .font(.system(size: 18))
                         }
+                        
+                        VideoViews(currentGame: game)
+                            .padding([.top, .bottom], 15)
+                        
+                        MultiplayerView(currentGame: game)
+                        
+                        CompaniesView(currentGame: game)
+
                     }
-                    
-                    Section {
-                        Text(game.summary ?? "N/A")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                    } header: {
-                        Text("Story:")
-                    }
-                    ForEach(games.prefix(1)) { game in
-                        Text("Title: \(game.title)")
-                        Text("Normal price: \(game.normalPrice)")
-                        Text("Sale prices: \(game.salePrice)")
-                        Text("Steam rating percent: \(game.steamRatingPercent)")
-                        Text("Steam rating text: \(game.steamRatingText ?? "N/A")")
-                        Text("Steam rating count: \(game.steamRatingCount)")
-                    }
-                    ForEach(game.multiplayer_modes ?? [TheGame.Multiplayer]()) { game in
-                        Text("Got campaign coop:\(game.campaigncoop ? "YES" : "NO")")
-                        Text("Got lan coop:\(game.lancoop ? "YES" : "NO")")
-                        Text("Got offline coop:\(game.offlinecoop ? "YES" : "NO")")
-                        if game.offlinecoop {
-                            Text("Amount players: \(game.offlinecoopmax ?? 0)")
-                        }
-                        Text("Got online coop:\(game.onlinecoop ? "YES" : "NO")")
-                        if game.onlinecoop {
-                            Text("Amount players: \(game.onlinecoopmax ?? 0)")
-                        }
-                        Text("Got splitscreen:\(game.splitscreen ? "YES" : "NO")")
+                    .padding(10)
+                    .padding(.bottom, 120)
+                }
+                .onAppear() {
+                    Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(game.slug ?? "")") { games in
+                        self.games = games
                     }
                 }
-                .padding(10)
-                .padding(.bottom, 100)
             }
-            
-            
-            .onAppear() {
-                Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(game.slug ?? "")") { games in
-                    self.games = games
-                }
-            }
+            .background(Colors().backgroundColor)
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }
-
-//struct GameView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GameView(game: [TheGames]())
-//    }
-//}
