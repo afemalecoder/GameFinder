@@ -8,7 +8,7 @@ import CoreData
 import SwiftUI
 
 struct FavouritesView: View {
-    @State var game : FavoriteGameStruct?
+    @State var game : TheGame?
     var networkFav = NetworkFavorite()
     
     @Environment(\.managedObjectContext) var moc

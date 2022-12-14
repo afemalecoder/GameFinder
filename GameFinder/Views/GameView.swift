@@ -20,7 +20,7 @@ struct GameView: View {
                             HStack {
                                 CoverView(currentGame: game)
                                     .frame(width: 100, height: 100)
-                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .clipShape(RoundedRectangle(cornerRadius: 18))
                                 
                                 VStack(alignment: .leading) {
                                     Text(game.name ?? "N/A")
@@ -28,36 +28,23 @@ struct GameView: View {
                                         .foregroundColor(.white)
                                     
                                     ReleaseDateView(currentGame: game)
-                                }
-                                
+                                }        
                                 Spacer()
-                                RatingView(currentGame: game)
                             }
                         }
                         
                         VStack(alignment: .leading) {
                             
-                            PlayerPerspectiveView(currentGame: game)
+                                PlayerPerspectiveView(currentGame: game)
                             
-                            GameModesView(currentgame: game)
+                                ModesView(currentgame: game)
                             
-                            ThemeView(currentGame: game)
-                            
-                            Text("Genres:")
-                                .font(.system(size: 15))
-                                .foregroundColor(.gray)
-                            ScrollView(.horizontal){
+                                ThemeView(currentGame: game)
+                           
                                 GenreView(currentgame: game)
-                            }
                         }
                         
-                        Text("Platform: ")
-                            .font(.system(size: 15))
-                            .foregroundColor(.gray)
-                        ScrollView(.horizontal){
                             PlatformView(currentGame: game)
-                        }
-                        
                         
                         ScrollView(.horizontal) {
                             ScreenshotsView(currentGame: game)
@@ -121,9 +108,7 @@ struct GameView: View {
                         .padding(.bottom, 15)
                         
                         Section {
-                            Text(game.summary ?? "N/A")
-                                .font(.title3)
-                                .foregroundColor(.white)
+                            SummaryView(game.summary ?? "N/A")
                         } header: {
                             Text("Story:")
                                 .font(.system(size: 18))

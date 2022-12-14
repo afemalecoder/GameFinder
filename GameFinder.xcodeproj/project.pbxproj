@@ -13,7 +13,6 @@
 		7209F67229111B9500DEB3C7 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7209F67129111B9500DEB3C7 /* SplashScreenView.swift */; };
 		720FE58D293E2C58008CEE6D /* FavouritesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FE58C293E2C58008CEE6D /* FavouritesDetailView.swift */; };
 		7225887529421ADE007FC0E6 /* NetworkFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7225887429421ADE007FC0E6 /* NetworkFavorite.swift */; };
-		7225887729421DE6007FC0E6 /* FavoriteGameStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7225887629421DE6007FC0E6 /* FavoriteGameStruct.swift */; };
 		7282560D29478064000E8E90 /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282560C29478064000E8E90 /* ImageSliderView.swift */; };
 		7282560F294898C3000E8E90 /* ReleaseDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282560E294898C3000E8E90 /* ReleaseDateView.swift */; };
 		7282561129489967000E8E90 /* CompaniesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561029489967000E8E90 /* CompaniesView.swift */; };
@@ -22,6 +21,8 @@
 		728256172948A16C000E8E90 /* MultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728256162948A16C000E8E90 /* MultiplayerView.swift */; };
 		7282561B2948AC95000E8E90 /* PlayerPerspectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561A2948AC95000E8E90 /* PlayerPerspectiveView.swift */; };
 		7282561D2948ACF4000E8E90 /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561C2948ACF4000E8E90 /* ThemeView.swift */; };
+		7282561F2949C4F5000E8E90 /* SteamRatingPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561E2949C4F5000E8E90 /* SteamRatingPriceView.swift */; };
+		728256212949CC29000E8E90 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728256202949CC29000E8E90 /* SummaryView.swift */; };
 		72AAAE8C292A796E00151A12 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAE8B292A796E00151A12 /* Network.swift */; };
 		72AAAE8E292A79C500151A12 /* TheGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAE8D292A79C500151A12 /* TheGame.swift */; };
 		72AAAEB4292C20E900151A12 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AAAEB3292C20E900151A12 /* GameCardView.swift */; };
@@ -31,7 +32,7 @@
 		72AFE0332935015C00DB2EFB /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE0322935015C00DB2EFB /* CoverView.swift */; };
 		72AFE05A2936350500DB2EFB /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE0592936350500DB2EFB /* VideoView.swift */; };
 		72AFE07129377AC700DB2EFB /* Steam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE07029377AC700DB2EFB /* Steam.swift */; };
-		72AFE07329389B1A00DB2EFB /* GameModesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE07229389B1A00DB2EFB /* GameModesView.swift */; };
+		72AFE07329389B1A00DB2EFB /* ModesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE07229389B1A00DB2EFB /* ModesView.swift */; };
 		72AFE0752938AEBB00DB2EFB /* LikeDislikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE0742938AEBB00DB2EFB /* LikeDislikeButtonView.swift */; };
 		72AFE087293A335D00DB2EFB /* FavouriteGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE086293A335D00DB2EFB /* FavouriteGame.swift */; };
 		72AFE0AA293DFA6A00DB2EFB /* FavoritesCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 72AFE0A8293DFA6A00DB2EFB /* FavoritesCoreData.xcdatamodeld */; };
@@ -50,7 +51,6 @@
 		7209F67129111B9500DEB3C7 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		720FE58C293E2C58008CEE6D /* FavouritesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesDetailView.swift; sourceTree = "<group>"; };
 		7225887429421ADE007FC0E6 /* NetworkFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFavorite.swift; sourceTree = "<group>"; };
-		7225887629421DE6007FC0E6 /* FavoriteGameStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGameStruct.swift; sourceTree = "<group>"; };
 		7282560C29478064000E8E90 /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
 		7282560E294898C3000E8E90 /* ReleaseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDateView.swift; sourceTree = "<group>"; };
 		7282561029489967000E8E90 /* CompaniesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesView.swift; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		728256162948A16C000E8E90 /* MultiplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerView.swift; sourceTree = "<group>"; };
 		7282561A2948AC95000E8E90 /* PlayerPerspectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPerspectiveView.swift; sourceTree = "<group>"; };
 		7282561C2948ACF4000E8E90 /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
+		7282561E2949C4F5000E8E90 /* SteamRatingPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamRatingPriceView.swift; sourceTree = "<group>"; };
+		728256202949CC29000E8E90 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		72AAAE8B292A796E00151A12 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		72AAAE8D292A79C500151A12 /* TheGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGame.swift; sourceTree = "<group>"; };
 		72AAAEB3292C20E900151A12 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
@@ -68,7 +70,7 @@
 		72AFE0322935015C00DB2EFB /* CoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
 		72AFE0592936350500DB2EFB /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		72AFE07029377AC700DB2EFB /* Steam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steam.swift; sourceTree = "<group>"; };
-		72AFE07229389B1A00DB2EFB /* GameModesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModesView.swift; sourceTree = "<group>"; };
+		72AFE07229389B1A00DB2EFB /* ModesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModesView.swift; sourceTree = "<group>"; };
 		72AFE0742938AEBB00DB2EFB /* LikeDislikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeDislikeButtonView.swift; sourceTree = "<group>"; };
 		72AFE086293A335D00DB2EFB /* FavouriteGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteGame.swift; sourceTree = "<group>"; };
 		72AFE0A9293DFA6A00DB2EFB /* FavoritesCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoritesCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -150,7 +152,6 @@
 				72AFE086293A335D00DB2EFB /* FavouriteGame.swift */,
 				72AFE0AB293DFC5000DB2EFB /* DataController.swift */,
 				7225887429421ADE007FC0E6 /* NetworkFavorite.swift */,
-				7225887629421DE6007FC0E6 /* FavoriteGameStruct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,7 +164,7 @@
 				72AFE0742938AEBB00DB2EFB /* LikeDislikeButtonView.swift */,
 				7282560C29478064000E8E90 /* ImageSliderView.swift */,
 				72AFE02E2934F5CA00DB2EFB /* GenreView.swift */,
-				72AFE07229389B1A00DB2EFB /* GameModesView.swift */,
+				72AFE07229389B1A00DB2EFB /* ModesView.swift */,
 				72AFE0302934FF9F00DB2EFB /* PlatformView.swift */,
 				72AFE0322935015C00DB2EFB /* CoverView.swift */,
 				72AFE0592936350500DB2EFB /* VideoView.swift */,
@@ -174,6 +175,8 @@
 				728256162948A16C000E8E90 /* MultiplayerView.swift */,
 				7282561A2948AC95000E8E90 /* PlayerPerspectiveView.swift */,
 				7282561C2948ACF4000E8E90 /* ThemeView.swift */,
+				7282561E2949C4F5000E8E90 /* SteamRatingPriceView.swift */,
+				728256202949CC29000E8E90 /* SummaryView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -263,7 +266,7 @@
 				7282560F294898C3000E8E90 /* ReleaseDateView.swift in Sources */,
 				72AFE0AA293DFA6A00DB2EFB /* FavoritesCoreData.xcdatamodeld in Sources */,
 				7282561529489B4E000E8E90 /* ScreenshotsView.swift in Sources */,
-				72AFE07329389B1A00DB2EFB /* GameModesView.swift in Sources */,
+				72AFE07329389B1A00DB2EFB /* ModesView.swift in Sources */,
 				72AFE0AC293DFC5000DB2EFB /* DataController.swift in Sources */,
 				728256172948A16C000E8E90 /* MultiplayerView.swift in Sources */,
 				72AFE087293A335D00DB2EFB /* FavouriteGame.swift in Sources */,
@@ -272,12 +275,13 @@
 				72C08B552913EDC8008983A0 /* GameFinderView.swift in Sources */,
 				72AFE02D2934BD2400DB2EFB /* GameView.swift in Sources */,
 				7209F6642911142E00DEB3C7 /* GameFinderApp.swift in Sources */,
+				7282561F2949C4F5000E8E90 /* SteamRatingPriceView.swift in Sources */,
+				728256212949CC29000E8E90 /* SummaryView.swift in Sources */,
 				72AAAEB4292C20E900151A12 /* GameCardView.swift in Sources */,
 				72AFE05A2936350500DB2EFB /* VideoView.swift in Sources */,
 				7225887529421ADE007FC0E6 /* NetworkFavorite.swift in Sources */,
 				72C08B4F2913C17E008983A0 /* Style.swift in Sources */,
 				72AFE0312934FF9F00DB2EFB /* PlatformView.swift in Sources */,
-				7225887729421DE6007FC0E6 /* FavoriteGameStruct.swift in Sources */,
 				720FE58D293E2C58008CEE6D /* FavouritesDetailView.swift in Sources */,
 				7209F67229111B9500DEB3C7 /* SplashScreenView.swift in Sources */,
 				72AFE0332935015C00DB2EFB /* CoverView.swift in Sources */,

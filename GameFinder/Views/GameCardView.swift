@@ -138,18 +138,14 @@ struct TheCard: View {
                         .foregroundColor(.white)
                 }
                 VStack(alignment: .leading, spacing: 3.0) {
-                    Text("Genres: ")
-                        .font(.system(size: 15))
-                        .foregroundColor(.gray)
-                    GenreView(currentgame: games, genreAmount: 2)
                     
-                    Text("Platforms: ")
-                        .font(.system(size: 15))
-                        .foregroundColor(.gray)
-                    PlatformView(currentGame: games, amount: 3)
+                    GenreView(currentgame: games, genreAmount: 2).scrollDisabled(true)
+                    
+                    PlatformView(currentGame: games, amount: 3).scrollDisabled(true)
                     
                     
                    Text(games.summary ?? "N/A")
+                        .lineLimit(4)
                         .font(.caption)
                         .foregroundColor(.white)
                         .padding([.top, .bottom], 2)
@@ -172,10 +168,3 @@ struct TheCard: View {
         }
     }
 }
-
-//
-//struct GameCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GameCardView()
-//    }
-//}
