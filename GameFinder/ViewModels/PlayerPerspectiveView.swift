@@ -12,19 +12,21 @@ struct PlayerPerspectiveView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 2) {
             Text("Player Perspectives:")
-                .font(.system(size: 12))
+                .font(.system(size: 15))
                 .foregroundColor(.gray)
-            if currentGame.player_perspectives != nil {
-                
-                ForEach(currentGame.player_perspectives ?? [TheGame.Perspective]()) { perspective in
-                    HStack {
-                        Text(perspective.name)
+            ScrollView(.horizontal) {
+                if currentGame.player_perspectives != nil {
+                        HStack {
+                            ForEach(currentGame.player_perspectives ?? [TheGame.Perspective]()) { perspective in
+
+                            Text(perspective.name)
+                        }
                     }
+                } else {
+                    Text("N/A")
                 }
-            } else {
-                Text("N/A")
             }
         }
     }

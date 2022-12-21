@@ -15,23 +15,27 @@ struct GenreView: View {
     var body: some View {
 
         if currentgame.genres != nil {
-                HStack {
-                    Text("Themes: ")
-                        .font(.system(size: 15))
-                        .foregroundColor(.gray)
-                    ForEach((currentgame.genres?.prefix(genreAmount)) ?? [TheGame.Genre]().prefix(genreAmount)) { genre in
-                        Text(genre.name)
-                            .lineLimit(1)
-                            .padding(5)
-                            .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
-                            .font(.subheadline.bold())
-                            .foregroundColor(.white)
+            VStack(alignment: .leading) {
+                Text("Genres: ")
+                    .font(.system(size: 15))
+                    .foregroundColor(.gray)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach((currentgame.genres?.prefix(genreAmount)) ?? [TheGame.Genre]().prefix(genreAmount)) { genre in
+                            Text(genre.name)
+                                .lineLimit(1)
+                                .padding(5)
+                                .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .font(.subheadline.bold())
+                                .foregroundColor(.white)
+                        }
                     }
                 }
-            
+            }
         } else {
             Text("N/A")
         }
+            
     }
 }
