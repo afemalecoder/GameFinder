@@ -50,9 +50,3 @@ struct LikeDislikeButtonView: View {
             }
     }
 }
-
-//struct LikeDislikeButtonView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LikeDislikeButtonView()
-//    }
-//}
