@@ -30,7 +30,7 @@ struct FavouritesView: View {
                                             .resizable()
                                             .frame(width: 50, height: 50)
                                     } placeholder: {
-                                        Image("gameFinder")
+                                        Image("gamefinder")
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)

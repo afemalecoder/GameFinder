@@ -22,7 +22,7 @@ struct ScreenshotsView: View {
                             .frame(width: 150, height: 80)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                     } placeholder: {
-                        Image("gameFinder")
+                        Image("gamefinder")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 150, height: 90)

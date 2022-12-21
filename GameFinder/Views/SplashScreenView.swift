@@ -24,7 +24,7 @@ struct SplashScreenView: View {
             ZStack{
                 Colors().backgroundColor
                 VStack {
-                    Image("gameFinder")
+                    Image("gamefinder")
                         .resizable()
                         .scaledToFit()
                 }
