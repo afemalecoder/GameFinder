@@ -56,7 +56,7 @@ struct GameView: View {
                                 VStack {
                                     Text("Normal price:")
                                         .font(.title3.bold())
-                                    Text("\(game.normalPrice)$")
+                                    Text("$\(game.normalPrice)")
                                 }
                                 .frame(maxWidth: .infinity)
                                 .padding(.horizontal, 5)
@@ -70,7 +70,7 @@ struct GameView: View {
                                     if game.salePrice == game.normalPrice {
                                         Text("N/A")
                                     } else {
-                                        Text("\(game.salePrice)$")
+                                        Text("$\(game.salePrice)")
                                     }
                                 }
                                 .frame(maxWidth: .infinity)

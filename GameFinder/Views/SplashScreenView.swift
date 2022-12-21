@@ -24,7 +24,7 @@ struct SplashScreenView: View {
             ZStack{
                 Colors().backgroundColor
                 VStack {
-                    Image("gamefinder")
+                    Image("gameFinder")
                         .resizable()
                         .scaledToFit()
                 }
@@ -39,7 +39,9 @@ struct SplashScreenView: View {
             }
             .ignoresSafeArea()
             .onAppear{
+                network.getAccessToken()
                 network.getGames() {}
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                     withAnimation{
                         self.isActive = true 
@@ -49,9 +51,3 @@ struct SplashScreenView: View {
         }
     }
 }
-
-//struct SplashScreenView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SplashScreenView()
-//    }
-//}

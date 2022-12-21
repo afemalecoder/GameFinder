@@ -8,7 +8,7 @@
 import Foundation
 
 struct Steam: Codable, Identifiable {
-    let id = UUID()
+    let id : Int?
     var title: String
     var normalPrice: String
     var salePrice: String
@@ -16,6 +16,7 @@ struct Steam: Codable, Identifiable {
     var thumb: String
     var steamRatingText: String?
     var steamRatingCount: String
+    var steamAppID: String?
 }
 
 class Api: ObservableObject {
@@ -26,12 +27,29 @@ class Api: ObservableObject {
             print("The url was invalid")
             return
         }
-        print(url)
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
-            let  steams = try! JSONDecoder().decode([Steam].self, from: data!)
-            DispatchQueue.main.async {
-                completion(steams)
+            if let error = error {
+                print("Error: \(error)")
+                return
             }
-        }.resume()
+            
+            guard let response = response as? HTTPURLResponse else {return}
+            
+            if response.statusCode == 200 {
+                guard let data = data else {return}
+                
+                DispatchQueue.main.async {
+                    do {
+                        let  steams = try JSONDecoder().decode([Steam].self, from: data)
+                        
+                        completion(steams)
+                    } catch let error {
+                        print("Error decoding: \(error)")
+                    }
+                }
+            }
+        }
+        .resume()
     }
 }

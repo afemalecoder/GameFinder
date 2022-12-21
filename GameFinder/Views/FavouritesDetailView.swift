@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct FavouritesDetailView: View {
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var networkFav: NetworkFavorite
     @Binding var game : TheGame?
     
     var favorite: Favourites
     
+    @State private var showingDeleteAlert = false
     @State private var isImageTapped = false
     @State var games = [Steam]()
     
@@ -45,7 +48,6 @@ struct FavouritesDetailView: View {
                         
                                 PlayerPerspectiveView(currentGame: favGame)
                            
-                          
                                 ModesView(currentgame: favGame)
                        
                                 ThemeView(currentGame: favGame)
@@ -89,7 +91,26 @@ struct FavouritesDetailView: View {
                     self.games = games
                 }
             }
+            .alert("Remove Game", isPresented: $showingDeleteAlert) {
+                Button("Remove", role: .destructive, action: deleteGame)
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Are you sure?")
+            }
+            .toolbar {
+                Button {
+                    showingDeleteAlert = true
+                } label : {
+                    Label("Remove this game", systemImage: "trash")
+                }
+            }
         }
         .ignoresSafeArea()
+    }
+    func deleteGame() {
+        moc.delete(favorite)
+        
+        try? moc.save()
+        dismiss()
     }
 }
