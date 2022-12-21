@@ -17,16 +17,21 @@ struct ThemeView: View {
             Text("Themes: ")
                 .font(.system(size: 15))
                 .foregroundColor(.gray)
-            if currentGame.themes != nil {
-                HStack {
-                    ForEach(currentGame.themes ?? [TheGame.Themes]()) { game in
-                        Text("\(game.name)")
-                        
+            ScrollView(.horizontal) {
+                if currentGame.themes != nil {
+                    
+                    HStack {
+                        ForEach(currentGame.themes ?? [TheGame.Themes]()) { game in
+                            Text("\(game.name)")
+                            
+                            
+                        }
                     }
+                } else {
+                    Text("N/A")
                 }
-            } else {
-                Text("N/A")
+            }
             }
         }
     }
-}
+
