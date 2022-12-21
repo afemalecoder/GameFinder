@@ -30,7 +30,7 @@ struct ImageSliderView: View {
                             .frame(width: 450, height: 400)
                             .cornerRadius(12)
                     } placeholder: {
-                        Image("gameFinder")
+                        Image("gamefinder")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 300, height: 300)
