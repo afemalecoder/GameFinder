@@ -15,13 +15,13 @@ struct CoverView: View {
         AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_cover_big/\(currentGame.cover?.image_id ?? "N/A").jpg")) { image in
             image
                 .resizable()
-                .frame(width: coverSizeWidth, height: coverSizeHeight)
+                .frame(maxWidth: coverSizeWidth, maxHeight: coverSizeHeight)
               
         } placeholder: {
             Image("gamefinder")
                 .resizable()
                 .scaledToFit()
-                .frame(width: coverSizeWidth, height: coverSizeHeight)
+                .frame(maxWidth: coverSizeWidth, maxHeight: coverSizeHeight)
         }
         
     }
