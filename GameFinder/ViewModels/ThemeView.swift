@@ -15,7 +15,7 @@ struct ThemeView: View {
         
         VStack(alignment: .leading) {
             Text("Themes: ")
-                .font(.system(size: 12))
+                .font(.system(size: 15))
                 .foregroundColor(.gray)
             if currentGame.themes != nil {
                 HStack {

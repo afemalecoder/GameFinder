@@ -16,6 +16,9 @@ struct GenreView: View {
 
         if currentgame.genres != nil {
                 HStack {
+                    Text("Themes: ")
+                        .font(.system(size: 15))
+                        .foregroundColor(.gray)
                     ForEach((currentgame.genres?.prefix(genreAmount)) ?? [TheGame.Genre]().prefix(genreAmount)) { genre in
                         Text(genre.name)
                             .lineLimit(1)
