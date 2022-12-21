@@ -8,152 +8,132 @@
 import SwiftUI
 
 struct GameCardView: View {
-    
     @EnvironmentObject var network: Network
-    
-    private func getCardWidth(_ geometry: GeometryProxy, id: Int) -> CGFloat {
-        let offset: CGFloat = CGFloat(network.games.count) * 5
-        return geometry.size.width - offset
-    }
-    private func getCardOffset(_ geometry: GeometryProxy, id: Int) -> CGFloat {
-        return  CGFloat(network.games.count)
-    }
-    //    private var maxID: Int {
-    //        return network.games.map { $0.id }.max() ?? 0
-    //    }
-    
+    @Binding var currentgame : TheGame?
+
     var body: some View {
         NavigationStack {
-            VStack() {
                 GeometryReader { geometry in
                     ZStack {
                         ForEach(network.games) { game in
-                            theCard(games: game, onRemove: { removedGame in
+                            
+                            TheCard(games: game, onRemove: { removedGame in
                                 network.games.removeAll { $0.id == removedGame.id}
+                                currentgame = network.games.last
                                 if network.games.count == 0 {
-                                    network.getGames()
+                                    network.getGames(){
+                                        currentgame = network.games.last
+                                    }
                                 }
                             })
-                            .frame(width: self.getCardWidth(geometry, id: game.id), height: geometry.size.height)
-                            .offset(x: 0, y: self.getCardOffset(geometry, id: game.id))
+                            .frame(minWidth: geometry.size.width, minHeight: geometry.size.height, alignment: .center)
                         }
                     }
                 }
-                .padding(.horizontal, 40)
             }
             .onAppear{
-                network.getGames()
-            }
+                network.getGames() {
+                    currentgame = network.games.last
+                }
         }
     }
 }
 
-struct theCard: View {
+struct TheCard: View {
     
     @State private var translation: CGSize = .zero
+    @State private var showGame = false
     
-    var games: TheGames
-    var onRemove: (_ game: TheGames) -> Void
+    @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var network: Network
+    
+  
+    var games: TheGame
+    var onRemove: (_ game: TheGame) -> Void
     var thresholdPrecentage: CGFloat = 0.5
-    
-    init(games: TheGames, onRemove: @escaping(_ games: TheGames) -> Void) {
+    @State var color = Colors().backgroundColor
+    init(games: TheGame, onRemove: @escaping(_ games: TheGame) -> Void) {
         self.games = games
         self.onRemove = onRemove
     }
+    
     private func getGesturePercentage(_ geometry: GeometryProxy, from gesture: DragGesture.Value) -> CGFloat {
         gesture.translation.width / geometry.size.width
     }
     
     var body: some View {
+
         GeometryReader { geometry in
-            VStack(alignment: .leading) {
-                
-                AsyncImage(url: URL(string: "https://images.igdb.com/igdb/image/upload/t_cover_big/\(games.cover?.image_id ?? "N/A").jpg")) { image in
-                        image
-                        .resizable()
-                        .frame(width: 330, height: 320)
-                } placeholder: {
-                    Image("gameFinder")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 330, height: 330)
-                
-            }
-                cardText
-            }
-            .frame(width: 300, height: 500)
-            .background(Colors().backgroundColor)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(radius: 8)
-            
-            .offset(x: self.translation.width, y: self.translation.height)
-            .rotationEffect(.degrees(Double(self.translation.width / geometry.size.width) * 10), anchor: .bottom)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        self.translation = value.translation
-                    } .onEnded { value in
-                        if abs(self.getGesturePercentage(geometry, from: value)) > self.thresholdPrecentage {
-                            self.onRemove(self.games)
-                        } else {
-                            withAnimation{
-                                self.translation = .zero
+         
+                VStack {
+                    CoverView(currentGame: games, coverSizeWidth: .maximum(.infinity, .infinity), coverSizeHeight: 330)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                    cardText
+                }
+                .background(color)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .animation(.interactiveSpring())
+                .offset(x: self.translation.width, y: 0)
+                .rotationEffect(.degrees(Double(self.translation.width / geometry.size.width) * 10), anchor: .center)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            self.translation = value.translation
+                        } .onEnded { value in
+                            if abs(self.getGesturePercentage(geometry, from: value)) > self.thresholdPrecentage {
+                                
+                                self.onRemove(self.games)
+                                if(value.translation.width > -50){
+                                    FavouriteGame(games: games, newFav: Favourites(context: moc))
+                                    try? moc.save()
+                                }
+                            } else {
+                                withAnimation{
+                                    self.translation = .zero
+                                }
                             }
                         }
+                )
+                .onTapGesture {
+                    showGame = true
+                }
+                .sheet(isPresented: $showGame) {
+                    ZStack(alignment: .bottom) {
+                        GameView(game: games)
+                        LikeDislikeButtonView(games: games, onRemove: { removedGame in
+                            network.games.removeAll { $0.id == removedGame.id}
+                            if network.games.count == 0 {
+                                network.getGames() {}
+                            }
+                        })
                     }
-            )
+                }
+            .ignoresSafeArea()
         }
-        
     }
     var cardText: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                HStack(alignment: .bottom) {
-                    Text(games.name)
+        VStack(alignment: .leading, spacing: 4.0) {
+            HStack(alignment: .bottom){
+                    Text(games.name ?? "N/A")
                         .lineLimit(2)
-                        .font(.title2.bold())
+                        .font(.system(size: 30, weight: .bold))
                         .foregroundColor(.white)
                 }
-                .padding(.bottom, 1)
-                VStack(alignment: .leading, spacing: 2.0) {
-                    HStack {
-                        ForEach(games.platforms ?? [TheGames.Platform]()) { platform in
-                            Text(platform.name)
-                                .lineLimit(1)
-                                .font(.subheadline)
-                                .foregroundColor(.white)
-                        }
-                    }
-                    HStack {
-                        ForEach(games.genres ?? [TheGames.Genre]()) { genre in
-                            Text(genre.name)
-                                .lineLimit(1)
-                                .font(.subheadline.bold())
-                                .foregroundColor(.white)
-                                .padding(3)
-                                .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                        }
-                    }
-                    Text(games.summary ?? "N/A")
-                        .font(.headline)
+                VStack(alignment: .leading, spacing: 4.0) {
+                    
+                    GenreView(currentgame: games, genreAmount: 2).scrollDisabled(true)
+                    
+                    PlatformView(currentGame: games, amount: 3).scrollDisabled(true)
+                    
+                   Text(games.summary ?? "N/A")
+                        .lineLimit(4)
+                        .font(.system(size: 15))
                         .foregroundColor(.white)
-                        .padding(.top, 5)
-                    Spacer()
+                        .padding(.top, 10)
+                        Spacer()
                 }
             }
-            .padding(.leading, 20)
+            .padding([.leading, .trailing], 10)
         }
     }
-}
-
-struct GameCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameCardView()
-    }
-}
-
-/*
- //TODO:
- 
- */
