@@ -15,7 +15,7 @@ struct GenreView: View {
     var body: some View {
 
         if currentgame.genres != nil {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text("Genres: ")
                     .font(.system(size: 15))
                     .foregroundColor(.gray)
