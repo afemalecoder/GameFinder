@@ -27,7 +27,7 @@ struct PlatformView: View {
     var body: some View {
         
         if currentGame.platforms != nil {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text("Platforms: ")
                     .font(.system(size: 15))
                     .foregroundColor(.gray)

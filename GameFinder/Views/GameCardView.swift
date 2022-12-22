@@ -19,7 +19,7 @@ struct GameCardView: View {
                             
                             TheCard(games: game, onRemove: { removedGame in
                                 network.games.removeAll { $0.id == removedGame.id}
-                                currentgame = network.games.last
+                                self.currentgame = network.games.last
                                 if network.games.count == 0 {
                                     network.getGames(){
                                         currentgame = network.games.last
@@ -42,16 +42,17 @@ struct GameCardView: View {
 struct TheCard: View {
     
     @State private var translation: CGSize = .zero
-    @State private var showGame = false
     
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var network: Network
     
   
-    var games: TheGame
+    @State var games: TheGame?
     var onRemove: (_ game: TheGame) -> Void
     var thresholdPrecentage: CGFloat = 0.5
+    
     @State var color = Colors().backgroundColor
+    
     init(games: TheGame, onRemove: @escaping(_ games: TheGame) -> Void) {
         self.games = games
         self.onRemove = onRemove
@@ -66,7 +67,7 @@ struct TheCard: View {
         GeometryReader { geometry in
          
                 VStack {
-                    CoverView(currentGame: games, coverSizeWidth: .maximum(.infinity, .infinity), coverSizeHeight: 330)
+                    CoverView(currentGame: games!, coverSizeWidth: .maximum(.infinity, .infinity), coverSizeHeight: 330)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     cardText
                 }
@@ -83,9 +84,9 @@ struct TheCard: View {
                         } .onEnded { value in
                             if abs(self.getGesturePercentage(geometry, from: value)) > self.thresholdPrecentage {
                                 
-                                self.onRemove(self.games)
+                                self.onRemove(self.games!)
                                 if(value.translation.width > -50){
-                                    FavouriteGame(games: games, newFav: Favourites(context: moc))
+                                    FavouriteGame(games: games!, newFav: Favourites(context: moc))
                                     try? moc.save()
                                 }
                             } else {
@@ -95,38 +96,25 @@ struct TheCard: View {
                             }
                         }
                 )
-                .onTapGesture {
-                    showGame = true
-                }
-                .sheet(isPresented: $showGame) {
-                    ZStack(alignment: .bottom) {
-                        GameView(game: games)
-                        LikeDislikeButtonView(games: games, onRemove: { removedGame in
-                            network.games.removeAll { $0.id == removedGame.id}
-                            if network.games.count == 0 {
-                                network.getGames() {}
-                            }
-                        })
-                    }
-                }
+               
             .ignoresSafeArea()
         }
     }
     var cardText: some View {
         VStack(alignment: .leading, spacing: 4.0) {
             HStack(alignment: .bottom){
-                    Text(games.name ?? "N/A")
+                    Text(games!.name ?? "N/A")
                         .lineLimit(2)
                         .font(.system(size: 30, weight: .bold))
                         .foregroundColor(.white)
                 }
                 VStack(alignment: .leading, spacing: 4.0) {
                     
-                    GenreView(currentgame: games, genreAmount: 2).scrollDisabled(true)
+                    GenreView(currentgame: games!, genreAmount: 2).scrollDisabled(true)
                     
-                    PlatformView(currentGame: games, amount: 3).scrollDisabled(true)
+                    PlatformView(currentGame: games!, amount: 3).scrollDisabled(true)
                     
-                   Text(games.summary ?? "N/A")
+                   Text(games!.summary ?? "N/A")
                         .lineLimit(4)
                         .font(.system(size: 15))
                         .foregroundColor(.white)

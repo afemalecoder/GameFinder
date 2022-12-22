@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct LikeDislikeButtonView: View {
+    @EnvironmentObject var network: Network
+
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     
-    var games: TheGame
+    @Binding var games: TheGame?
     var onRemove: (_ game: TheGame) -> Void
     
     var body: some View {
@@ -19,7 +21,8 @@ struct LikeDislikeButtonView: View {
             HStack {
                     Button(action: {
                        
-                        self.onRemove(self.games)
+                        self.onRemove(self.games!)
+                        self.games = network.games.last
                         dismiss()
                     }) {
                        
@@ -33,9 +36,11 @@ struct LikeDislikeButtonView: View {
                     }
                 
                 Button {
-                    FavouriteGame(games: games, newFav: Favourites(context: moc))
+                    FavouriteGame(games: games!, newFav: Favourites(context: moc))
                     
-                    self.onRemove(self.games)
+                    self.onRemove(self.games!)
+                    self.games = network.games.last
+
                     dismiss()
                     try? moc.save()
                 } label: {
