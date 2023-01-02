@@ -19,7 +19,7 @@ struct ScreenshotsView: View {
                         image
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 150, height: 80)
+                            .frame(width: 200, height: 130)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                     } placeholder: {
                         Image("gamefinder")
@@ -37,7 +37,6 @@ struct ScreenshotsView: View {
                 ImageSliderView(imageURL: currentGame)
                     .presentationDetents([.fraction(0.75)])
             }
-//            NavigationLink("", destination: ImageSliderView(imageURL: currentGame), isActive: $isImageTapped)
         }
     }
 }

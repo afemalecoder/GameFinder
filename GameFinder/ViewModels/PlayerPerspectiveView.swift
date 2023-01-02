@@ -21,7 +21,7 @@ struct PlayerPerspectiveView: View {
                         HStack {
                             ForEach(currentGame.player_perspectives ?? [TheGame.Perspective]()) { perspective in
 
-                            Text(perspective.name)
+                            Text("\(perspective.name),")
                         }
                     }
                 } else {

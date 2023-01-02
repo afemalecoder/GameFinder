@@ -34,18 +34,24 @@ struct CompaniesView: View {
                     ForEach(currentGame.involved_companies ?? [TheGame.Companies]()) { company in
                         if company.developer != false {
                             VStack {
-                                Text("Developer: ")
+                                Text("Developer")
+                                    .lineLimit(1)
                                     .font(.system(size: 12))
                                     .foregroundColor(.gray)
                                 Text(company.company.name)
+                                    .lineLimit(1)
+
                             }
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 10)
                         } else if company.publisher != false {
                             VStack {
-                                Text("Publisher: ")
+                                Text("Publisher")
+                                    .lineLimit(1)
                                     .font(.system(size: 12))
                                     .foregroundColor(.gray)
                                 Text(company.company.name)
+                                    .lineLimit(1)
+
                             }
                         }
                     }

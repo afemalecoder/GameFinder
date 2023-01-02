@@ -114,3 +114,4 @@ struct FavouritesDetailView: View {
         dismiss()
     }
 }
+ 

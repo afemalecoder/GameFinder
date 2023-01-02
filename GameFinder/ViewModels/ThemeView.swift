@@ -13,18 +13,15 @@ struct ThemeView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 2) {
             Text("Themes: ")
                 .font(.system(size: 15))
                 .foregroundColor(.gray)
             ScrollView(.horizontal) {
                 if currentGame.themes != nil {
-                    
                     HStack {
                         ForEach(currentGame.themes ?? [TheGame.Themes]()) { game in
-                            Text("\(game.name)")
-                            
-                            
+                            Text("\(game.name),")
                         }
                     }
                 } else {

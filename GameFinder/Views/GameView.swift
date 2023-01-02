@@ -74,6 +74,7 @@ struct GameView: View {
                 .onAppear() {
                     Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(game.slug ?? "")") { games in
                         self.games = games
+                        
                     }
                 }
             }

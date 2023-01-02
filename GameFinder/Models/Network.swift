@@ -61,7 +61,7 @@ class Network: ObservableObject {
             guard let url = URL(string: "https://api.igdb.com/v4/games/") else { fatalError("Missing URL") }
             
             var requestHeader = URLRequest(url: url)
-            requestHeader.httpBody = "fields themes.*,game_modes.*,slug,multiplayer_modes.*,name,platforms.name,genres.name,involved_companies.company.name, involved_companies.*,aggregated_rating,first_release_date,summary,screenshots.*,cover.*,player_perspectives.name,videos.*,websites.*;limit 100;where cover!=null&id=(\(randoms));".data(using: .utf8, allowLossyConversion: false)
+            requestHeader.httpBody = "fields themes.*,game_modes.*,slug,multiplayer_modes.*,name,platforms.name,genres.name,involved_companies.company.name, involved_companies.*,aggregated_rating,first_release_date,summary,screenshots.*,cover.*,player_perspectives.name,videos.*,websites.*;limit 100;where cover!=null&id=(\(randoms))&themes!=(42);".data(using: .utf8, allowLossyConversion: false)
             requestHeader.httpMethod = "POST"
             requestHeader.setValue("\(clientID)", forHTTPHeaderField: "Client-ID")
             requestHeader.setValue("Bearer \(KeychainHelper.readToken(.access)!)", forHTTPHeaderField: "Authorization")

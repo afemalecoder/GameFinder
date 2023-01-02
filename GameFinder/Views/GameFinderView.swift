@@ -53,7 +53,8 @@ struct GameFinderView: View {
                             
                         } else {
                                 
-                                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .purple)).fixedSize().frame(width: 30, height: 30)
+                                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .purple))
+                                .frame(width: 200, height: 200)
                                    
                             }
                             }

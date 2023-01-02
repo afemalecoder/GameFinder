@@ -53,7 +53,7 @@ struct PlatformView: View {
                             case "Nintendo Switch" :
                                 Label("\(platform.name)", image:"nintendo")
                                     .modifier(LabelStyle())
-                            case "Xbox One", "Xbox 360", "Xbox Series X|S" :
+                            case "Xbox One", "Xbox 360", "Xbox Series X|S", "Xbox" :
                                 Label("\(platform.name)", image:"xbox")
                                     .modifier(LabelStyle())
                             case "PlayStation", "PlayStation 2", "PlayStation 3", "PlayStation 4", "PlayStation 5", "PlayStation Portable", "PlayStation Vita" :

@@ -67,6 +67,7 @@ struct TheCard: View {
         GeometryReader { geometry in
          
                 VStack {
+                    
                     CoverView(currentGame: games!, coverSizeWidth: .maximum(.infinity, .infinity), coverSizeHeight: 330)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     cardText
@@ -74,29 +75,28 @@ struct TheCard: View {
                 .background(color)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                .animation(.interactiveSpring())
                 .offset(x: self.translation.width, y: 0)
                 .rotationEffect(.degrees(Double(self.translation.width / geometry.size.width) * 10), anchor: .center)
                 .gesture(
                     DragGesture()
                         .onChanged { value in
-                            self.translation = value.translation
-                        } .onEnded { value in
-                            if abs(self.getGesturePercentage(geometry, from: value)) > self.thresholdPrecentage {
+                                self.translation = value.translation
                                 
+                        }
+                        .onEnded { value in
+
+                            if abs(self.getGesturePercentage(geometry, from: value)) > self.thresholdPrecentage {
+                               
                                 self.onRemove(self.games!)
                                 if(value.translation.width > -50){
                                     FavouriteGame(games: games!, newFav: Favourites(context: moc))
                                     try? moc.save()
                                 }
                             } else {
-                                withAnimation{
                                     self.translation = .zero
-                                }
                             }
                         }
                 )
-               
             .ignoresSafeArea()
         }
     }
