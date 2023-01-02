@@ -92,12 +92,15 @@ class Style {
         }
     }
     
-    struct Titles: ViewModifier {
+    struct Title: ViewModifier {
         func body(content: Content) -> some View {
             content
-                .font(.title)
-                .bold()
-                .foregroundColor(.white)
+                .lineLimit(1)
+                .padding(10)
+                .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .font(.subheadline.bold())
+                .foregroundColor(Color.white)
         }
     }
 }

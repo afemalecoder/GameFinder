@@ -113,16 +113,16 @@ struct TheCard: View {
                     
                     GenreView(currentgame: games!, genreAmount: 2).scrollDisabled(true)
                     
-                    PlatformView(currentGame: games!, amount: 3).scrollDisabled(true)
+                    PlatformView(currentGame: games!, amount: 2).scrollDisabled(true)
                     
                    Text(games!.summary ?? "N/A")
                         .lineLimit(4)
-                        .font(.system(size: 15))
+                        .font(.system(size: 18))
                         .foregroundColor(.white)
-                        .padding(.top, 10)
+                        .padding(.top, 5)
                         Spacer()
                 }
             }
-            .padding([.leading, .trailing], 10)
+            .padding([.leading, .trailing], 5)
         }
     }

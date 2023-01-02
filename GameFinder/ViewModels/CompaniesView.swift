@@ -30,30 +30,37 @@ struct CompaniesView: View {
                         .shadow(radius: 2)
                         .padding(.vertical, 20)
                 }
-                HStack {
-                    ForEach(currentGame.involved_companies ?? [TheGame.Companies]()) { company in
-                        if company.developer != false {
-                            VStack {
-                                Text("Developer")
-                                    .lineLimit(1)
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.gray)
-                                Text(company.company.name)
-                                    .lineLimit(1)
-
+                GeometryReader { geometry in
+                    ScrollView(.horizontal){
+                        
+                        HStack(alignment: .center) {
+                            Spacer()
+                            ForEach(currentGame.involved_companies ?? [TheGame.Companies]()) { company in
+                                if company.developer != false {
+                                    VStack {
+                                        Text("Developer")
+                                            .lineLimit(1)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(.gray)
+                                        Text(company.company.name)
+                                            .lineLimit(1)
+                                        
+                                    }
+                                    .padding(.horizontal, 10)
+                                } else if company.publisher != false {
+                                    VStack {
+                                        Text("Publisher")
+                                            .lineLimit(1)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(.gray)
+                                        Text(company.company.name)
+                                            .lineLimit(1)
+                                    }
+                                }
                             }
-                            .padding(.horizontal, 10)
-                        } else if company.publisher != false {
-                            VStack {
-                                Text("Publisher")
-                                    .lineLimit(1)
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.gray)
-                                Text(company.company.name)
-                                    .lineLimit(1)
-
-                            }
+                            Spacer()
                         }
+                        .frame(minWidth: geometry.size.width)
                     }
                 }
             }

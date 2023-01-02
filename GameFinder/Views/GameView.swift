@@ -38,13 +38,12 @@ struct GameView: View {
                         
                         VStack(alignment: .leading) {
                             
-                                PlayerPerspectiveView(currentGame: game)
                             
                                 ModesView(currentgame: game)
                             
-                                ThemeView(currentGame: game)
                            
                                 GenreView(currentgame: game)
+                                
                         }
                         
                             PlatformView(currentGame: game)
@@ -55,39 +54,7 @@ struct GameView: View {
                         .padding([.top, .bottom], 5)
                         
                         ForEach(games.prefix(1)) { game in
-                            HStack(spacing: 10) {
-                                VStack {
-                                    Text("Normal price:")
-                                        .font(.title3.bold())
-                                    Text("$\(game.normalPrice)")
-                                }
-                                .frame(maxWidth: .infinity)
-                                .padding(.horizontal, 5)
-                                .padding(.vertical, 20)
-                                .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .onTapGesture {
-                                    openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
-                                }
-                                
-                                VStack {
-                                    Text("Sale prices: ")
-                                        .font(.title3.bold())
-                                    if game.salePrice == game.normalPrice {
-                                        Text("N/A")
-                                    } else {
-                                        Text("$\(game.salePrice)")
-                                    }
-                                }
-                                .frame(maxWidth: .infinity)
-                                .padding(.horizontal, 5)
-                                .padding(.vertical, 20)
-                                .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .onTapGesture {
-                                    openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
-                                }
-                            }
+                         
                             
                             HStack(spacing: 2.0) {
                                 VStack(alignment: .center){
@@ -118,23 +85,65 @@ struct GameView: View {
                             }
                         }
                         .padding(.bottom, 15)
+                        
                         Section {
                             SummaryView(game.summary ?? "N/A")
                         } header: {
-                            Text("Story:")
-                                .font(.system(size: 18))
+                            Text("Summary")
+                                .font(.system(size: 15).bold())
+                                .foregroundColor(.gray)
                         }
-                        
-                        VideoViews(currentGame: game)
-                            .padding([.top, .bottom], 15)
-                        
-                        MultiplayerView(currentGame: game)
-                        
-                        CompaniesView(currentGame: game)
-
+                        VStack(spacing: 10.0) {
+                            ThemeView(currentGame: game)
+                            
+                            PlayerPerspectiveView(currentGame: game)
+                            
+                            VideoViews(currentGame: game)
+                        }
+                        .padding(.bottom, 10)
+                        VStack {
+                            ForEach(games.prefix(1)) { game in
+                                HStack(spacing: 10) {
+                                    VStack {
+                                        Text("Normal price:")
+                                            .font(.title3.bold())
+                                        Text("$\(game.normalPrice)")
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 20)
+                                    .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .onTapGesture {
+                                        openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
+                                    }
+                                    
+                                    VStack {
+                                        Text("Sale prices: ")
+                                            .font(.title3.bold())
+                                        if game.salePrice == game.normalPrice {
+                                            Text("N/A")
+                                        } else {
+                                            Text("$\(game.salePrice)")
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 20)
+                                    .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .onTapGesture {
+                                        openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
+                                    }
+                                }
+                            }
+                            MultiplayerView(currentGame: game)
+                            
+                            CompaniesView(currentGame: game)
+                        }
                     }
                     .padding(10)
-                    .padding(.bottom, 120)
+                    .padding(.bottom, 150)
                 }
                 .onAppear() {
                     Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(game.slug ?? "")") { games in

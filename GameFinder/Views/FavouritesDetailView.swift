@@ -10,6 +10,7 @@ import SwiftUI
 struct FavouritesDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
+    @Environment(\.openURL) var openURL
     @EnvironmentObject var networkFav: NetworkFavorite
     @Binding var game : TheGame?
     
@@ -18,6 +19,7 @@ struct FavouritesDetailView: View {
     @State private var showingDeleteAlert = false
     @State private var isImageTapped = false
     @State var games = [Steam]()
+    
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -32,7 +34,7 @@ struct FavouritesDetailView: View {
                                 CoverView(currentGame: favGame)
                                     .frame(width: 100, height: 100)
                                     .clipShape(RoundedRectangle(cornerRadius: 18))
-
+                                
                                 VStack(alignment: .leading) {
                                     Text(favGame.name ?? "N/A")
                                         .font(.title2.bold())
@@ -40,45 +42,112 @@ struct FavouritesDetailView: View {
                                     
                                     ReleaseDateView(currentGame: favGame)
                                 }
-
+                                
                                 Spacer()
                             }
                         }
                         VStack(alignment: .leading) {
-                        
-                                PlayerPerspectiveView(currentGame: favGame)
-                           
-                                ModesView(currentgame: favGame)
-                       
-                                ThemeView(currentGame: favGame)
-                      
-                                GenreView(currentgame: favGame)
+                            
+                            
+                            ModesView(currentgame: favGame)
+                            
+                            
+                            GenreView(currentgame: favGame)
                             
                         }
-                            
-                                PlatformView(currentGame: favGame)
                         
-                            
-                            ScrollView(.horizontal) {
-                                ScreenshotsView(currentGame: favGame)
+                        PlatformView(currentGame: favGame)
+                        
+                        
+                        ScrollView(.horizontal) {
+                            ScreenshotsView(currentGame: favGame)
+                        }
+                        .padding([.top, .bottom], 5)
+                        
+                        ForEach(games.prefix(1)) { game in
+                            HStack(spacing: 2.0) {
+                                VStack(alignment: .center){
+                                    Text(" Rating percent: ")
+                                        .font(.subheadline.bold())
+                                    Text("\(game.steamRatingPercent)%")
+                                }
+                                Style.DividerView()
+                                VStack(alignment: .center){
+                                    Text(" Rating: ")
+                                        .font(.subheadline.bold())
+                                    Text("\(game.steamRatingText ?? "N/A")")
+                                }
+                                Style.DividerView()
+                                VStack(alignment: .center) {
+                                    Text(" Rating count: ")
+                                        .font(.subheadline.bold())
+                                    Text("\(game.steamRatingCount)")
+                                }
                             }
-                            .padding([.top, .bottom], 5)
-                        
-                        SteamRatingPriceView(games: games)
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 5)
+                            .padding(.vertical, 20)
+                            .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .onTapGesture {
+                                openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
+                            }
+                        }
                         
                         Section {
                             SummaryView(favGame.summary ?? "N/A")
                         } header: {
-                            Text("Story:")
-                                .font(.system(size: 18))
+                            Text("Summery")
+                                .font(.system(size: 15).bold())
+                                .foregroundColor(.gray)
                         }
                         
+                        ThemeView(currentGame: favGame)
+                        
+                        PlayerPerspectiveView(currentGame: favGame)
+                       
                         VideoViews(currentGame: favGame)
                             .padding([.top, .bottom], 15)
-                        
-                        MultiplayerView(currentGame: favGame)
-                        
-                        CompaniesView(currentGame: favGame)
+                        Group {
+                            ForEach(games.prefix(1)) { game in
+                                HStack(spacing: 10) {
+                                    VStack {
+                                        Text("Normal price:")
+                                            .font(.title3.bold())
+                                        Text("$\(game.normalPrice)")
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 20)
+                                    .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .onTapGesture {
+                                        openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
+                                    }
+                                    
+                                    VStack {
+                                        Text("Sale prices: ")
+                                            .font(.title3.bold())
+                                        if game.salePrice == game.normalPrice {
+                                            Text("N/A")
+                                        } else {
+                                            Text("$\(game.salePrice)")
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, 5)
+                                    .padding(.vertical, 20)
+                                    .background(Color(red: 55 / 255, green: 55 / 255, blue: 128 / 255))
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    .onTapGesture {
+                                        openURL(URL(string: "http://store.steampowered.com/app/\(game.steamAppID ?? "")")!)
+                                    }
+                                }
+                            }
+                            MultiplayerView(currentGame: favGame)
+                            
+                            CompaniesView(currentGame: favGame)
+                        }
                     }
                 }
                 .padding(.bottom, 50)
@@ -89,7 +158,6 @@ struct FavouritesDetailView: View {
                 networkFav.getFavoriteGames(favGameID: Int(favorite.id)){}
                 Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(favorite.slug ?? "")") { games in
                     self.games = games
-                    print(games)
                 }
             }
             .alert("Remove Game", isPresented: $showingDeleteAlert) {
@@ -115,4 +183,4 @@ struct FavouritesDetailView: View {
         dismiss()
     }
 }
- 
+

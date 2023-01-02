@@ -73,8 +73,7 @@ struct MultiplayerView: View {
                 }
                 .padding(10)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255).opacity(0.5))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .background(Color(red: 74 / 255, green: 67 / 255, blue: 172 / 255))                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
         }
     }
