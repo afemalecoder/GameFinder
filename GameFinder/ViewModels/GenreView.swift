@@ -15,7 +15,7 @@ struct GenreView: View {
     var body: some View {
 
         if currentgame.genres != nil {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text("Genres ")
                     .font(.system(size: 15).bold())
                     .foregroundColor(.gray)
@@ -25,16 +25,25 @@ struct GenreView: View {
                             Text(genre.name)
                                 .lineLimit(1)
                                 .padding(10)
-                                .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
+                                .background(Color(red: 74 / 255, green: 67 / 255, blue: 172 / 255))
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .font(.subheadline.bold())
-                                .foregroundColor(Colors().backgroundColor)
+                                .foregroundColor(Color.white)
                         }
                     }
                 }
             }
         } else {
-            Text("N/A")
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Genres ")
+                    .font(.system(size: 15).bold())
+                    .foregroundColor(.gray)
+                Text("N/A")
+                    .padding(10)
+                    .background(Color(red: 74 / 255, green: 67 / 255, blue: 172 / 255))                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .font(.subheadline.bold())
+                    .foregroundColor(Color.white)
+            }
         }
             
     }

@@ -19,15 +19,14 @@ struct PlatformView: View {
                 .font(.headline.bold())
                 .foregroundColor(.white)
                 .padding(10)
-                .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .background(Color(red: 74 / 255, green: 67 / 255, blue: 172 / 255))                .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
     
     var body: some View {
         
         if currentGame.platforms != nil {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text("Platforms ")
                     .font(.system(size: 15).bold())
                     .foregroundColor(.gray)

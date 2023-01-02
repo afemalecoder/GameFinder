@@ -61,7 +61,7 @@ struct GameFinderView: View {
                     
                     
                     .progressViewStyle(.circular)
-                    .padding(.top, geometry.size.height * 0.2)
+                    .padding(.top, geometry.size.height * 0.15)
                     .padding(.bottom, geometry.size.height * 0.09)
                     .padding([.leading, .trailing], geometry.size.width * 0.09)
                     
