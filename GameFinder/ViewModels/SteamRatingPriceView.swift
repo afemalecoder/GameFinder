@@ -12,7 +12,7 @@ struct SteamRatingPriceView: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
-        ForEach(games.prefix(1)) { game in
+        ForEach(games) { game in
             HStack(spacing: 15) {
                 VStack {
                     Text("Normal price:")

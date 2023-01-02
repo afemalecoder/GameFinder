@@ -18,18 +18,18 @@ struct PlatformView: View {
                 .lineLimit(1)
                 .font(.headline.bold())
                 .foregroundColor(.white)
-                .padding(5)
+                .padding(10)
                 .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .clipShape(RoundedRectangle(cornerRadius: 20))
         }
     }
     
     var body: some View {
         
         if currentGame.platforms != nil {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Platforms: ")
-                    .font(.system(size: 15))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Platforms ")
+                    .font(.system(size: 15).bold())
                     .foregroundColor(.gray)
                 ScrollView(.horizontal) {
                     HStack {
@@ -68,7 +68,13 @@ struct PlatformView: View {
                 }
             }
         } else {
-            Text("N/A")
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Platforms ")
+                    .font(.system(size: 15).bold())
+                    .foregroundColor(.gray)
+                Text("N/A")
+                    .modifier(LabelStyle())
+            }
         }
             
     }

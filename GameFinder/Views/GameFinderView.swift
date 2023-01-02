@@ -13,7 +13,7 @@ struct GameFinderView: View {
     @State private var hasTimeElapsed = false
     @State private var loadText = false
     @State private var showGame = false
-
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationStack {
@@ -31,7 +31,7 @@ struct GameFinderView: View {
                                     GameView(game: game!)
                                     LikeDislikeButtonView(games: $game, onRemove: { removedGame in
                                         network.games.removeAll { $0.id == removedGame.id}
-                                            game = network.games.last
+                                        game = network.games.last
                                         
                                         if network.games.count == 0 {
                                             network.getGames() {}
@@ -52,34 +52,33 @@ struct GameFinderView: View {
                             })
                             
                         } else {
-                                
-                                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .purple))
+                            
+                            ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .purple))
                                 .frame(width: 200, height: 200)
-                                   
-                            }
-                            }
-                            
-                            
-                            .progressViewStyle(.circular)
-                            .padding(.top, geometry.size.height * 0.2)
-                            .padding(.bottom, geometry.size.height * 0.09)
-                            .padding([.leading, .trailing], geometry.size.width * 0.09)
                             
                         }
-                            .toolbar() {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    NavigationLink(destination: FavouritesView()){
-                                        Image(systemName: "heart.fill")
-                                            .font(.system(size: 30))
-                                            .foregroundColor(Color(red: 251 / 255, green: 119 / 255, blue: 133 / 255))
-                                            .padding([.trailing, .bottom], 15)
-                                            .padding(.top, 25)
-                                    }
-                                }
-                            }
-                            .ignoresSafeArea()
+                    }
+                    
+                    
+                    .progressViewStyle(.circular)
+                    .padding(.top, geometry.size.height * 0.2)
+                    .padding(.bottom, geometry.size.height * 0.09)
+                    .padding([.leading, .trailing], geometry.size.width * 0.09)
+                    
+                }
+                .toolbar() {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: FavouritesView()){
+                            Image(systemName: "heart.fill")
+                                .font(.system(size: 30))
+                                .foregroundColor(Color(red: 251 / 255, green: 119 / 255, blue: 133 / 255))
+                                .padding([.trailing, .bottom], 15)
+                                .padding(.top, 25)
+                        }
                     }
                 }
+                .ignoresSafeArea()
             }
-            
         }
+    }
+}

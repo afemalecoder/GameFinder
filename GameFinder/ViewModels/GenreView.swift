@@ -15,20 +15,20 @@ struct GenreView: View {
     var body: some View {
 
         if currentgame.genres != nil {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Genres: ")
-                    .font(.system(size: 15))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Genres ")
+                    .font(.system(size: 15).bold())
                     .foregroundColor(.gray)
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach((currentgame.genres?.prefix(genreAmount)) ?? [TheGame.Genre]().prefix(genreAmount)) { genre in
                             Text(genre.name)
                                 .lineLimit(1)
-                                .padding(5)
+                                .padding(10)
                                 .background(Color(red: 83 / 255, green: 83 / 255, blue: 181 / 255))
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .font(.subheadline.bold())
-                                .foregroundColor(.white)
+                                .foregroundColor(Colors().backgroundColor)
                         }
                     }
                 }
