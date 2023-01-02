@@ -40,7 +40,6 @@ struct SplashScreenView: View {
             .ignoresSafeArea()
             .onAppear{
                 network.getAccessToken()
-                network.getGames() {}
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                     withAnimation{

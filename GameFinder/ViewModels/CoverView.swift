@@ -18,9 +18,7 @@ struct CoverView: View {
                 .frame(maxWidth: coverSizeWidth, maxHeight: coverSizeHeight)
               
         } placeholder: {
-            Image("gamefinder")
-                .resizable()
-                .scaledToFit()
+            ProgressView()
                 .frame(maxWidth: coverSizeWidth, maxHeight: coverSizeHeight)
         }
         

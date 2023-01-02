@@ -20,7 +20,7 @@ struct ModesView: View {
                     HStack {
                         ForEach(currentgame.game_modes ?? [TheGame.Modes]()) { game in
                             
-                            Text(game.name)
+                            Text("\(game.name),")
                         }
                     }
                 } else {
