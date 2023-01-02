@@ -123,6 +123,6 @@ struct TheCard: View {
                         Spacer()
                 }
             }
-            .padding([.leading, .trailing], 5)
+            .padding([.leading, .trailing], 8)
         }
     }

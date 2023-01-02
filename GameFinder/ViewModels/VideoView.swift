@@ -28,7 +28,6 @@ struct VideoViews: View {
                     }
                 }
             }
-//                .padding([.top, .bottom], 15)
         }
     }
 }

@@ -20,6 +20,7 @@ struct ReleaseDateView: View {
             }
         } else {
             Text("Release date: N/A")
+                .font(.system(size: 22))
         }
     }
 }

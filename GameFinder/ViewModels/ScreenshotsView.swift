@@ -22,12 +22,8 @@ struct ScreenshotsView: View {
                             .frame(width: 200, height: 130)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                     } placeholder: {
-                        Image("gamefinder")
-                            .resizable()
-                            .scaledToFit()
+                        ProgressView()
                             .frame(width: 150, height: 90)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-
                     }
                 }
             } .onTapGesture{

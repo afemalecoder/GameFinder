@@ -16,7 +16,6 @@
 		7282560D29478064000E8E90 /* ImageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282560C29478064000E8E90 /* ImageSliderView.swift */; };
 		7282560F294898C3000E8E90 /* ReleaseDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282560E294898C3000E8E90 /* ReleaseDateView.swift */; };
 		7282561129489967000E8E90 /* CompaniesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561029489967000E8E90 /* CompaniesView.swift */; };
-		7282561329489A07000E8E90 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561229489A07000E8E90 /* RatingView.swift */; };
 		7282561529489B4E000E8E90 /* ScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561429489B4E000E8E90 /* ScreenshotsView.swift */; };
 		728256172948A16C000E8E90 /* MultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728256162948A16C000E8E90 /* MultiplayerView.swift */; };
 		7282561B2948AC95000E8E90 /* PlayerPerspectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7282561A2948AC95000E8E90 /* PlayerPerspectiveView.swift */; };
@@ -57,7 +56,6 @@
 		7282560C29478064000E8E90 /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
 		7282560E294898C3000E8E90 /* ReleaseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDateView.swift; sourceTree = "<group>"; };
 		7282561029489967000E8E90 /* CompaniesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesView.swift; sourceTree = "<group>"; };
-		7282561229489A07000E8E90 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		7282561429489B4E000E8E90 /* ScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsView.swift; sourceTree = "<group>"; };
 		728256162948A16C000E8E90 /* MultiplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerView.swift; sourceTree = "<group>"; };
 		7282561A2948AC95000E8E90 /* PlayerPerspectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPerspectiveView.swift; sourceTree = "<group>"; };
@@ -175,11 +173,10 @@
 				72AFE02E2934F5CA00DB2EFB /* GenreView.swift */,
 				72AFE07229389B1A00DB2EFB /* ModesView.swift */,
 				72AFE0302934FF9F00DB2EFB /* PlatformView.swift */,
-				72AFE0322935015C00DB2EFB /* CoverView.swift */,
 				72AFE0592936350500DB2EFB /* VideoView.swift */,
+				72AFE0322935015C00DB2EFB /* CoverView.swift */,
 				7282560E294898C3000E8E90 /* ReleaseDateView.swift */,
 				7282561029489967000E8E90 /* CompaniesView.swift */,
-				7282561229489A07000E8E90 /* RatingView.swift */,
 				7282561429489B4E000E8E90 /* ScreenshotsView.swift */,
 				728256162948A16C000E8E90 /* MultiplayerView.swift */,
 				7282561A2948AC95000E8E90 /* PlayerPerspectiveView.swift */,
@@ -269,7 +266,6 @@
 				72AFE07129377AC700DB2EFB /* Steam.swift in Sources */,
 				72C08B512913C55F008983A0 /* Colors.swift in Sources */,
 				7282561D2948ACF4000E8E90 /* ThemeView.swift in Sources */,
-				7282561329489A07000E8E90 /* RatingView.swift in Sources */,
 				7282561B2948AC95000E8E90 /* PlayerPerspectiveView.swift in Sources */,
 				72AAAE8E292A79C500151A12 /* TheGame.swift in Sources */,
 				72AAAE8C292A796E00151A12 /* Network.swift in Sources */,
@@ -430,6 +426,7 @@
 				DEVELOPMENT_TEAM = T9P4A3R82Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -441,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.matildacederberg.GameFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -461,6 +458,7 @@
 				DEVELOPMENT_TEAM = T9P4A3R82Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -472,7 +470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.matildacederberg.GameFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

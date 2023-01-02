@@ -30,11 +30,8 @@ struct ImageSliderView: View {
                             .frame(width: 450, height: 400)
                             .cornerRadius(12)
                     } placeholder: {
-                        Image("gamefinder")
-                            .resizable()
-                            .scaledToFit()
+                        ProgressView()
                             .frame(width: 300, height: 300)
-                            .cornerRadius(12)
                     }
                 }
             }

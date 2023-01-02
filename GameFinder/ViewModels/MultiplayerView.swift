@@ -16,7 +16,6 @@ struct MultiplayerView: View {
                 HStack {
                     ForEach(currentGame.multiplayer_modes ?? [TheGame.Multiplayer]()) { game in
                         Group {
-                            Style.DividerView()
                             VStack {
                                 Text("Campaign coop:")
                                 Text("\(game.campaigncoop ? "YES" : "NO")")
@@ -65,7 +64,6 @@ struct MultiplayerView: View {
                                 Text("Splitscreen:")
                                 Text("\(game.splitscreen ? "YES" : "NO")")
                             }
-                            Style.DividerView()
                             
                         }
                     }
