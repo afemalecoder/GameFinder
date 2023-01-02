@@ -89,6 +89,7 @@ struct FavouritesDetailView: View {
                 networkFav.getFavoriteGames(favGameID: Int(favorite.id)){}
                 Api().loadData(url: "https://www.cheapshark.com/api/1.0/deals?title=\(favorite.slug ?? "")") { games in
                     self.games = games
+                    print(games)
                 }
             }
             .alert("Remove Game", isPresented: $showingDeleteAlert) {

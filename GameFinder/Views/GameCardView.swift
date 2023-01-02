@@ -39,6 +39,7 @@ struct GameCardView: View {
     }
 }
 
+
 struct TheCard: View {
     
     @State private var translation: CGSize = .zero

@@ -17,7 +17,7 @@ class Style {
                 .foregroundColor(.white)
                 .opacity(0.5)
                 .shadow(radius: 2)
-                .padding(.horizontal)
+                .padding(.horizontal, 5)
                
         }
     }
