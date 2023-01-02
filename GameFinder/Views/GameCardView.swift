@@ -116,7 +116,7 @@ struct TheCard: View {
                     PlatformView(currentGame: games!, amount: 2).scrollDisabled(true)
                     
                    Text(games!.summary ?? "N/A")
-                        .lineLimit(4)
+                        .lineLimit(5)
                         .font(.system(size: 18))
                         .foregroundColor(.white)
                         .padding(.top, 5)

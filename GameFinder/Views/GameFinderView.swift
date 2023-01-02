@@ -61,9 +61,9 @@ struct GameFinderView: View {
                     
                     
                     .progressViewStyle(.circular)
-                    .padding(.top, geometry.size.height * 0.15)
-                    .padding(.bottom, geometry.size.height * 0.08)
-                    .padding([.leading, .trailing], geometry.size.width * 0.09)
+                    .padding(.top, geometry.size.height >= 900 ? geometry.size.height * 0.25 : geometry.size.height * 0.15)
+                    .padding(.bottom, geometry.size.height >= 900 ? geometry.size.height * 0.1 : geometry.size.height * 0.04)
+                    .padding([.leading, .trailing], geometry.size.width >= 500 ? geometry.size.width * 0.25 : geometry.size.width * 0.09)
                     
                 }
                 .toolbar() {

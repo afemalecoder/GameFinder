@@ -76,8 +76,6 @@ class Network: ObservableObject {
                 
                 guard let response = response as? HTTPURLResponse else {return}
             
-
-                
                 if response.statusCode == 200 {
                     guard let data = data else {return}
                     DispatchQueue.main.async {
