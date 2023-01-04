@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct GameFinderApp: App {
+struct GamesFinderApp: App {
     
     init() {
         

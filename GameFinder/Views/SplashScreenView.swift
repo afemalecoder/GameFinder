@@ -19,12 +19,12 @@ struct SplashScreenView: View {
     var body: some View {
         
         if isActive {
-            GameFinderView()
+            GamesFinderView()
         } else {
             ZStack{
                 Colors().backgroundColor
                 VStack {
-                    Image("gamefinder")
+                    Image("gamesfinder")
                         .resizable()
                         .scaledToFit()
                 }

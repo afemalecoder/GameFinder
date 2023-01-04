@@ -31,7 +31,7 @@ struct ImageSliderView: View {
                             .cornerRadius(12)
                     } placeholder: {
                         ProgressView()
-                            .frame(width: 300, height: 300)
+                            .frame(width: 450, height: 400)
                     }
                 }
             }
