@@ -34,7 +34,9 @@ struct GamesFinderView: View {
                                         game = network.games.last
                                         
                                         if network.games.count == 0 {
-                                            network.getGames() {}
+                                            network.getGames() {
+                                                game = network.games.last
+                                            }
                                         }
                                     })
                                 }
