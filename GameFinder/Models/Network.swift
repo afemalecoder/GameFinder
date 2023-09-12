@@ -12,8 +12,8 @@ class Network: ObservableObject {
     @Published var games = [TheGame]()
     var randomNumber: [Int] = []
     var randoms = ""
-    var clientID = ApiKeys.GetApiKeys.clientID.rawValue
-    var clientSecret = ApiKeys.GetApiKeys.clientSecret.rawValue
+    var clientID = ApiKeys.clientID
+    var clientSecret = ApiKeys.clientSecret
     
     func getAccessToken() {
             guard let accessTokenURL = URL(string:"https://id.twitch.tv/oauth2/token?client_id=\(clientID)&client_secret=\(clientSecret)&grant_type=client_credentials") else {fatalError("Missing URL")}

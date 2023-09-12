@@ -53,6 +53,8 @@
 		7209F67129111B9500DEB3C7 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		720FE58C293E2C58008CEE6D /* FavouritesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesDetailView.swift; sourceTree = "<group>"; };
 		7225887429421ADE007FC0E6 /* NetworkFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFavorite.swift; sourceTree = "<group>"; };
+		722EFEB32AB0A6F20065B9ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		722EFEB42AB0A74A0065B9ED /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = GameFinder/Config.xcconfig; sourceTree = "<group>"; };
 		7282560C29478064000E8E90 /* ImageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderView.swift; sourceTree = "<group>"; };
 		7282560E294898C3000E8E90 /* ReleaseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDateView.swift; sourceTree = "<group>"; };
 		7282561029489967000E8E90 /* CompaniesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		7209F6572911142E00DEB3C7 = {
 			isa = PBXGroup;
 			children = (
+				722EFEB42AB0A74A0065B9ED /* Config.xcconfig */,
 				7209F6622911142E00DEB3C7 /* GameFinder */,
 				7209F6612911142E00DEB3C7 /* Products */,
 			);
@@ -115,6 +118,7 @@
 		7209F6622911142E00DEB3C7 /* GameFinder */ = {
 			isa = PBXGroup;
 			children = (
+				722EFEB32AB0A6F20065B9ED /* Info.plist */,
 				72C08B4D2913C162008983A0 /* ViewModels */,
 				72C08B4C2913C0F3008983A0 /* Models */,
 				7209F67329111EAB00DEB3C7 /* Views */,
@@ -426,6 +430,7 @@
 				DEVELOPMENT_TEAM = T9P4A3R82Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GameFinder/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -458,6 +463,7 @@
 				DEVELOPMENT_TEAM = T9P4A3R82Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GameFinder/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
